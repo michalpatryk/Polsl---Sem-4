@@ -1,5 +1,6 @@
 #include <typeinfo>
 #include <iostream>
+
 class Firma
 {
 public:
