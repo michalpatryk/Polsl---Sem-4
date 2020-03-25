@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 
 template<typename T>
 T operacja_na_liczbach(T x, T y) { return(x + y); }
@@ -60,6 +61,14 @@ public:
 	void wyczysc() { zawartosc = 0; }
 	void dodaj(T nowy) { zawartosc += nowy; }
 	T wypisz() { return zawartosc; }
+};
+
+template<>
+class Tprzechowalnia<char> {
+	std::string text;
+public:
+	void dodaj(char nowy) { text += nowy; }
+	std::string wypisz() { return text; }
 };
 
 int main() {
