@@ -1,10 +1,11 @@
 #include <iostream>
 #include <vector>
-
+#include <windows.h>
 class ZbiornikPaliwa
 {
-	unsigned int cap;
+	
 public:
+	unsigned int cap;
 	ZbiornikPaliwa(unsigned int cap) :cap(cap) { }
 
 	bool pobierz(unsigned int in)
@@ -87,4 +88,24 @@ int main()
 		eng2.dodajZbiornik(storage.back());
 		eng3.dodajZbiornik(storage.back());
 	}
+
+	while (storage.size() > 0) {
+		for (std::shared_ptr<ZbiornikPaliwa>& tank : storage) {
+			std::vector<std::shared_ptr<ZbiornikPaliwa>>::iterator current= storage.begin();
+
+			if (tank) {
+				if (!(tank->pobierz(eng1.req_fuel)
+					&& tank->pobierz(eng2.req_fuel)
+					&& tank->pobierz(eng3.req_fuel))) {
+					storage.erase(current);
+					std::cout << "Zbiornik: " << tank << " usuniety" << std::endl;
+				}
+				else {
+					Sleep(1000);
+					std::cout << "Zostalo " << tank->cap << " w: " << tank << std::endl;
+				}
+			}
+		}
+	}
+	std::cout << "Wszystkie zbiorniki puste" << std::endl;
 }
