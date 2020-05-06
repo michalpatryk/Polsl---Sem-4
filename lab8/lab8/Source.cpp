@@ -32,6 +32,12 @@ void showMatches(std::string s, std::regex r) {
 	}
 }
 
+std::string replacer(std::string s) {
+	std::string goodWords = std::regex_replace(s, std::regex("[a-zA-Z]\\*+ing"), "quacking");
+	goodWords = std::regex_replace(goodWords, std::regex("[a-zA-Z]\\*+[a-z]*"), "duck");
+	return goodWords;
+}
+
 
 int main() {
 
@@ -68,6 +74,22 @@ int main() {
 	//b
 	showMatches("How much wood would a woodchuck chuck if a woodchuck could chuck wood? Would Woodie who chucked that driftwood know?",
 		std::regex("([a-zA-Z]*[wW]ood[a-zA-Z]*)|([a-zA-Z]*[cC]huck[a-zA-Z]*)"));
-	std::cout << std::endl;
+	std::cout << std::endl << std::endl << std::endl;
+	//Ex4
+	std::string uglyString = "To be     fair, you have    to have a\n\n very high     IQ tounderstand   Rick and Morty.\n\n\nAnd    yes, by   the way, I\n DO have a Rick & Morty tattoo.";
+	std::cout << uglyString << std::endl;
+	std::string niceString = std::regex_replace(uglyString, std::regex("(\\\n){2,}"), "\n");
+	niceString = std::regex_replace(niceString, std::regex("( ){2,}"), " ");
+	niceString = std::regex_replace(niceString, std::regex("( a\\n)"), " \na");
+	niceString = std::regex_replace(niceString, std::regex("( I\\n)"), " \nI");
+	std::cout << niceString << std::endl;
+	std::cout << std::endl << std::endl << std::endl;
+	//Ex5
+	std::string badWords = "You are a f***ing m********ker";
+	std::string goodWords = replacer(badWords);
+	std::cout << badWords << " changed to " << goodWords << std::endl;
 
+	std::string badWords2 = "I'll f***ing kill your sorry f***ing ass you m********ker";
+	std::string goodWords2 = replacer(badWords2);
+	std::cout << badWords2 << " changed to " << goodWords2 << std::endl;
 }
