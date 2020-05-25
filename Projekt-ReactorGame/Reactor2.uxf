@@ -1,0 +1,534 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>9</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>99</x>
+      <y>387</y>
+      <w>171</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>Cell
+--
+-double baseHeatGeneration
+-double heat
+-durability
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>99</x>
+      <y>477</y>
+      <w>135</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>Reflector
+--
+-double heatMult
+-durability
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>99</x>
+      <y>297</y>
+      <w>135</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>Seller
+--
+-double capacity
+-double baseCapacity
+-double heat
+-double baseMaxHeat
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>99</x>
+      <y>666</y>
+      <w>144</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>Generator
+--
+-double baseConversion
+-double baseHeat
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>99</x>
+      <y>558</y>
+      <w>135</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>Coolant
+--
+-double heatLeft</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>783</x>
+      <y>396</y>
+      <w>189</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Singleton&gt;&gt;
+Reactor
+--
+-double power
+-double money
+-vector&lt;Tile&gt; tiles
+--
+
+-bool checkIfUpgraded()
++bool checkPrice()
++void sellPower()
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>360</x>
+      <y>297</y>
+      <w>189</w>
+      <h>324</h>
+    </coordinates>
+    <panel_attributes>Part
+--
++string type
++string Description
++int levels
+-int level
+-double basePrice
+-double costMult
++int isCalc
+-bool heatAffected
+--
++void Destroy()
++void Upgrade()
++string getPartType()
++bool isHeatAffected()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>225</x>
+      <y>324</y>
+      <w>153</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>150.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>261</x>
+      <y>387</y>
+      <w>117</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>110.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>225</x>
+      <y>504</y>
+      <w>153</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>150.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>225</x>
+      <y>576</y>
+      <w>153</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>150.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>234</x>
+      <y>612</y>
+      <w>171</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>170.0;10.0;170.0;100.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>999</x>
+      <y>657</y>
+      <w>189</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Singleton&gt;&gt;
+&lt;&lt;Thread2&gt;&gt;
+Clock
+--
+-int ticksPerSecond
+--
++bool checkIfUpdate()
++void upgrade()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>594</x>
+      <y>414</y>
+      <w>135</w>
+      <h>189</h>
+    </coordinates>
+    <panel_attributes>Tile
+--
+-coord location
+-string tileType
+-Part part
+--
++bool buyPart(type)
++bool sellPart(type)
++string getPartType
++string getTileType()
++coord getLocation()
++&amp;Part getPart(coord)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>963</x>
+      <y>540</y>
+      <w>144</w>
+      <h>135</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;140.0;10.0;140.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>540</x>
+      <y>441</y>
+      <w>72</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>60.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>720</x>
+      <y>441</y>
+      <w>81</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>70.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>783</x>
+      <y>774</y>
+      <w>189</w>
+      <h>117</h>
+    </coordinates>
+    <panel_attributes>UpgradesManager
+--
++vector&lt;Upgrade&gt; upgrades
+--
++bool upgrade(type) //adds 1 level</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>783</x>
+      <y>936</y>
+      <w>198</w>
+      <h>117</h>
+    </coordinates>
+    <panel_attributes>Upgrade
+--
+-type [BetterGenHeat, 
+		BetterCoolant, etc]
+-int level
+-double multiplier
+--
++double returnMultiplier()
++string returnType()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>873</x>
+      <y>567</y>
+      <w>27</w>
+      <h>225</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;230.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>873</x>
+      <y>882</y>
+      <w>27</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>981</x>
+      <y>936</y>
+      <w>135</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>for all upgrades
+check if type==desired
+if yes apply multiplier
+if no skip</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>963</x>
+      <y>756</y>
+      <w>90</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>80.0;10.0;80.0;30.0;10.0;30.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1107</x>
+      <y>198</y>
+      <w>27</w>
+      <h>189</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>10.0;190.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>828</x>
+      <y>36</y>
+      <w>261</w>
+      <h>225</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>10.0;230.0;10.0;10.0;270.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1188</x>
+      <y>36</y>
+      <w>135</w>
+      <h>855</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>40.0;930.0;130.0;930.0;130.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1008</x>
+      <y>819</y>
+      <w>216</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>UpgradeInterface
+--
+--
++void buyUpgrade(type) //onClick
++void showUpgradeDescription(type) //onHover
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>963</x>
+      <y>855</y>
+      <w>63</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;50.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1053</x>
+      <y>369</y>
+      <w>135</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>ReactorInterface
+--
+--
++void sellAllPower()
++string displayHeat()
++string displayPower()
++string displayMoney()
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>963</x>
+      <y>414</y>
+      <w>108</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;100.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>783</x>
+      <y>243</y>
+      <w>189</w>
+      <h>135</h>
+    </coordinates>
+    <panel_attributes>TileInterface
+--
+--
++void onClick(coord)
++void onHover(coord)
++void drawTile()
++void drawPart()
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>711</x>
+      <y>36</y>
+      <w>90</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Struct&gt;&gt;
+Coord
+--
+int x
+int y</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>864</x>
+      <y>369</y>
+      <w>27</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;30.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1071</x>
+      <y>36</y>
+      <w>126</w>
+      <h>171</h>
+    </coordinates>
+    <panel_attributes>Game
+--
+-int windowSizeX
+-int windowSizeY
+-TileInterface TI
+-ReactorInterface RI
+-UpgradeInterface UI
+--
++void run()
++void refresh()
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>432</x>
+      <y>738</y>
+      <w>180</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>PowerGenerator
+--
+-double basePowerGeneration
+-double powerGeneration</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>477</x>
+      <y>612</y>
+      <w>27</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>99</x>
+      <y>207</y>
+      <w>135</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>Battery
+--
+-double capacity
+-double heat
+-double maxHeat
+-double baseMaxHeat</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
