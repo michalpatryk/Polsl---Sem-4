@@ -1,0 +1,251 @@
+Renderer.1 {
+    backgroundcolor = transparent;
+    bordercolor = #3C3C3C;
+    borders = (0, 0, 0, 0);
+    textcolor = #3C3C3C;
+    texturebackground = None;
+}
+
+Renderer.2 {
+    backgroundcolor = transparent;
+    bordercolor = #3C3C3C;
+    borders = (0, 0, 0, 0);
+    textcolor = #3C3C3C;
+    texturebackground = None;
+
+    scrollbar {
+        arrowbackgroundcolor = #F5F5F5;
+        arrowbackgroundcolorhover = white;
+        arrowcolor = #3C3C3C;
+        arrowcolorhover = black;
+        texturearrowdown = None;
+        texturearrowdownhover = None;
+        texturearrowup = None;
+        texturearrowuphover = None;
+        texturethumb = None;
+        texturethumbhover = None;
+        texturetrack = None;
+        texturetrackhover = None;
+        thumbcolor = #DCDCDC;
+        thumbcolorhover = #E6E6E6;
+        trackcolor = #F5F5F5;
+    }
+}
+
+TextBox.TextBox1 {
+    HorizontalScrollbarPolicy = Never;
+    MaximumCharacters = 0;
+    Position = (230, 0);
+    Size = (788, 155);
+    Text = "";
+    TextSize = 13;
+
+    Renderer {
+        backgroundcolor = white;
+        bordercolor = black;
+        borders = (1, 1, 1, 1);
+        caretcolor = black;
+        caretwidth = 1;
+        defaulttextcolor = #A0A0A0;
+        padding = (0, 0, 0, 0);
+        selectedtextbackgroundcolor = #006EFF;
+        selectedtextcolor = white;
+        textcolor = #3C3C3C;
+        texturebackground = None;
+
+        scrollbar {
+            arrowbackgroundcolor = #F5F5F5;
+            arrowbackgroundcolorhover = white;
+            arrowcolor = #3C3C3C;
+            arrowcolorhover = black;
+            texturearrowdown = None;
+            texturearrowdownhover = None;
+            texturearrowup = None;
+            texturearrowuphover = None;
+            texturethumb = None;
+            texturethumbhover = None;
+            texturetrack = None;
+            texturetrackhover = None;
+            thumbcolor = #DCDCDC;
+            thumbcolorhover = #E6E6E6;
+            trackcolor = #F5F5F5;
+        }
+    }
+}
+
+Button.powerSell {
+    Position = (70, 130);
+    Text = "Sell all power";
+    TextSize = 13;
+
+    Renderer {
+        backgroundcolor = #F5F5F5;
+        backgroundcolordisabled = #E6E6E6;
+        backgroundcolordown = #EBEBEB;
+        backgroundcolorhover = white;
+        bordercolor = #3C3C3C;
+        bordercolordisabled = #7D7D7D;
+        bordercolordown = black;
+        bordercolorfocused = #1E1EB4;
+        bordercolorhover = black;
+        borders = (1, 1, 1, 1);
+        textcolor = #3C3C3C;
+        textcolordisabled = #7D7D7D;
+        textcolordown = black;
+        textcolorhover = black;
+        texture = None;
+        texturedisabled = None;
+        texturedown = None;
+        texturefocused = None;
+        texturehover = None;
+    }
+}
+
+Label.Money {
+    AutoSize = true;
+    ScrollbarPolicy = Never;
+    Size = (50.2, 18);
+    Text = "Money:";
+    TextSize = 13;
+    renderer = &2;
+}
+
+Label.Research {
+    AutoSize = true;
+    Position = (0, 20);
+    ScrollbarPolicy = Never;
+    Size = (68.2, 18);
+    Text = "Research:";
+    TextSize = 13;
+    renderer = &2;
+}
+
+Label.Money_var {
+    AutoSize = true;
+    Position = (80, 0);
+    ScrollbarPolicy = Never;
+    Size = (37.2, 18);
+    Text = Label;
+    TextSize = 13;
+    renderer = &2;
+}
+
+Label.Research_val {
+    AutoSize = true;
+    Position = (80, 20);
+    ScrollbarPolicy = Never;
+    Size = (37.2, 18);
+    Text = Label;
+    TextSize = 13;
+    renderer = &1;
+}
+
+Label.MaxPower {
+    AutoSize = true;
+    Position = (0, 40);
+    ScrollbarPolicy = Never;
+    Size = (78.2, 18);
+    Text = "Max power:";
+    TextSize = 13;
+    renderer = &2;
+}
+
+Label.MaxPower_var {
+    AutoSize = true;
+    Position = (80, 40);
+    ScrollbarPolicy = Never;
+    Size = (37.2, 18);
+    Text = Label;
+    TextSize = 13;
+    renderer = &1;
+}
+
+ProgressBar.StorageBar {
+    Maximum = 100;
+    Minimum = 0;
+    Position = (0, 110);
+    Size = (230, 22);
+    TextSize = 13;
+    Value = 0;
+
+    Renderer {
+        backgroundcolor = #F5F5F5;
+        bordercolor = black;
+        borders = (1, 1, 1, 1);
+        fillcolor = #006EFF;
+        textcolor = #3C3C3C;
+        textcolorfilled = white;
+        texturebackground = None;
+        texturefill = None;
+    }
+}
+
+Label.Components {
+    AutoSize = true;
+    Position = (0, 150);
+    ScrollbarPolicy = Never;
+    Size = (85.2, 18);
+    Text = Components;
+    TextSize = 13;
+    renderer = &2;
+}
+
+Picture.PowerLine {
+    Position = (10, 170);
+    Size = (30, 30);
+
+    Renderer {
+        texture = "../resources/DefaultPicture.png";
+        transparenttexture = false;
+    }
+}
+
+Picture.GeneratorLine {
+    Position = (10, 250);
+    Size = (30, 30);
+
+    Renderer {
+        texture = "../resources/DefaultPicture.png";
+        transparenttexture = false;
+    }
+}
+
+Picture.ExtraLine {
+    Position = (10, 290);
+    Size = (30, 30);
+
+    Renderer {
+        texture = "../resources/DefaultPicture.png";
+        transparenttexture = false;
+    }
+}
+
+Picture.BatteryLine {
+    Position = (10, 330);
+    Size = (30, 30);
+
+    Renderer {
+        texture = "../resources/DefaultPicture.png";
+        transparenttexture = false;
+    }
+}
+
+Picture.PowerLine2 {
+    Position = (10, 210);
+    Size = (30, 30);
+
+    Renderer {
+        texture = "../resources/DefaultPicture.png";
+        transparenttexture = false;
+    }
+}
+
+Picture.OfficeLine {
+    Position = (10, 370);
+    Size = (30, 30);
+
+    Renderer {
+        texture = "../resources/DefaultPicture.png";
+        transparenttexture = false;
+    }
+}

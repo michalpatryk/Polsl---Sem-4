@@ -1,0 +1,3 @@
+FormSize = (1024, 800);
+RecentFiles = ["reactorGame.txt"];
+Themes = ["themes/BabyBlue.txt", "themes/BabyBlue.txt", "themes/Black.txt", "themes/TransparentGrey.txt"];
