@@ -1,7 +1,7 @@
 #include <string>
 #include <Windows.h>
 
-void getFullPath(std::string str)
+void getFullPath(const std::string& str)
 {
 	char filename[100];
 	strcpy_s(filename, str.c_str());
