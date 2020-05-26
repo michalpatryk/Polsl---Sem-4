@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Parts">
+      <UniqueIdentifier>{49b8d8d9-ba15-49e6-884e-9db4902d4869}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Parts">
+      <UniqueIdentifier>{f71ed349-779e-4e91-a572-346575b1993a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -29,6 +35,12 @@
     </ClCompile>
     <ClCompile Include="Part.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Battery.cpp">
+      <Filter>Source Files\Parts</Filter>
+    </ClCompile>
+    <ClCompile Include="Seller.cpp">
+      <Filter>Source Files\Parts</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -49,6 +61,12 @@
     </ClInclude>
     <ClInclude Include="Part.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Battery.h">
+      <Filter>Header Files\Parts</Filter>
+    </ClInclude>
+    <ClInclude Include="Seller.h">
+      <Filter>Header Files\Parts</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

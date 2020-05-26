@@ -142,7 +142,7 @@ Label.Research_val {
 
 Label.MaxPower {
     AutoSize = true;
-    Position = (0, 40);
+    Position = (0, 60);
     ScrollbarPolicy = Never;
     Size = (78.2, 18);
     Text = "Max power:";
@@ -152,7 +152,7 @@ Label.MaxPower {
 
 Label.MaxPower_var {
     AutoSize = true;
-    Position = (80, 40);
+    Position = (80, 60);
     ScrollbarPolicy = Never;
     Size = (37.2, 18);
     Text = Label;
@@ -248,4 +248,24 @@ Picture.OfficeLine {
         texture = "../resources/DefaultPicture.png";
         transparenttexture = false;
     }
+}
+
+Label.Power {
+    AutoSize = true;
+    Position = (0, 40);
+    ScrollbarPolicy = Never;
+    Size = (48.2, 18);
+    Text = "Power:";
+    TextSize = 13;
+    renderer = &1;
+}
+
+Label.Power_var {
+    AutoSize = true;
+    Position = (80, 40);
+    ScrollbarPolicy = Never;
+    Size = (37.2, 18);
+    Text = Label;
+    TextSize = 13;
+    renderer = &1;
 }

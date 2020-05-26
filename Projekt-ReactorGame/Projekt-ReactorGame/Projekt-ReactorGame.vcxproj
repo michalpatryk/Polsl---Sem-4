@@ -130,18 +130,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Battery.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Part.cpp" />
     <ClCompile Include="Reactor.cpp" />
+    <ClCompile Include="Seller.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Tile.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Battery.h" />
     <ClInclude Include="Coordinates.h" />
     <ClInclude Include="debugFunctions.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Part.h" />
     <ClInclude Include="Reactor.h" />
+    <ClInclude Include="Seller.h" />
     <ClInclude Include="Tile.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
