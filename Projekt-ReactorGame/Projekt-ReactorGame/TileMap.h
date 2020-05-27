@@ -1,14 +1,15 @@
 #pragma once
+#pragma warning (disable: 4244)
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
 class TileMap : public sf::Drawable, public sf::Transformable
 {
 
-	int tileSizeX;
-	int tileSizeY;
-	int tileMapWidth;
-	int tileMapHeight;
+	unsigned int tileSizeX = 0;
+	unsigned int tileSizeY = 0;
+	unsigned int tileMapWidth = 0;
+	unsigned int tileMapHeight = 0;
 	sf::VertexArray m_vertices;
 	sf::Texture m_tileset;
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const
