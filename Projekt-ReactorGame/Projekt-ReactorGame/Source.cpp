@@ -13,5 +13,4 @@ int main()
 	const sf::VideoMode v_mode(1024, 800, 32);
 	Game game(v_mode);
 	return(game.run());
-	
 }

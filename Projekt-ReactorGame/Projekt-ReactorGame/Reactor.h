@@ -80,7 +80,7 @@ public:
 			//gettick += clock.getTick();
 		}
 		std::cout << "test";
-		
+		//shutdown = true;
 	}
 
 	Clock& getClock() {
@@ -89,11 +89,9 @@ public:
 	int& getTickCounter() {
 		return std::ref(ticks);
 	}
-	std::mutex& getMutex() {
-		return std::ref(mtx);
-	}
-	void accessTick() {
-		//clock.getTick();
+
+	bool& getKillSwitch() {
+		return std::ref(shutdown);
 	}
 	void reactorShutdown() {
 		shutdown = true;
