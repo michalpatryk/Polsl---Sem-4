@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+
 class Part
 {
 	std::string type;

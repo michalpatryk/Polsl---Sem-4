@@ -3,19 +3,21 @@
 #include  "Part.h"
 #include <string>
 
+enum class TileType{buildable, unbuildable};
+
 class Tile
 {
 	Coordinates location;
-	std::string tileType;
+	TileType tileType;
 	std::unique_ptr<Part> part;
 	//Part part;
 public:
 	Tile() {
 		location = Coordinates{ 0,0 };
-		tileType = "Water";
+		tileType = TileType::buildable;
 		part = nullptr;
 	}
-	Tile(Coordinates location_, std::string tileType_) {
+	Tile(Coordinates location_, TileType tileType_) {
 		location = location_;
 		tileType = tileType_;
 	}

@@ -21,7 +21,7 @@ void sru() {
 
 int Game::run()
 {
-	Reactor reactor;
+	
 	window.create(vMode, "test");
 	window.setFramerateLimit(60);
 	tgui::Gui gui(window);
@@ -32,7 +32,7 @@ int Game::run()
 	TileMap map;
 	if (!map.load("tileset.png", sf::Vector2u(32, 32), level, 16, 9, 230, 200))
 		return -1;
-	
+	Reactor reactor{ level, 16, 9 };
 	try
 	{
 		gui.loadWidgetsFromFile("../gui/reactorGame.txt");
@@ -44,7 +44,7 @@ int Game::run()
 		std::cerr << "TGUI Exception: " << e.what() << std::endl;
 		return EXIT_FAILURE;
 	}
-
+	
 	//map.change(2, 2, sf::Vector2u(20, 3));
 	//Clock c1{10};
 	//std::thread t1{ c1 };
