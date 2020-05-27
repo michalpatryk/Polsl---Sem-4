@@ -32,6 +32,7 @@ int Game::run()
 	TileMap map;
 	if (!map.load("tileset.png", sf::Vector2u(32, 32), level, 16, 9, 230, 200))
 		return -1;
+	bool exit = false;
 	Reactor reactor{ level, 16, 9 };
 	try
 	{
@@ -44,7 +45,9 @@ int Game::run()
 		std::cerr << "TGUI Exception: " << e.what() << std::endl;
 		return EXIT_FAILURE;
 	}
+	//std::thread clockThread(reactor.getClock(),std::ref( reactor.getTickCounter()), std::ref(exit), std::ref(reactor.getMutex()));
 	
+	//reactor.startClock();
 	//map.change(2, 2, sf::Vector2u(20, 3));
 	//Clock c1{10};
 	//std::thread t1{ c1 };
@@ -57,9 +60,12 @@ int Game::run()
 		sf::Event event{};
 		while (window.pollEvent(event))
 		{
-			if (event.type == sf::Event::Closed)
+			if (event.type == sf::Event::Closed) {
 				window.close();
-			
+				exit = true;
+				reactor.reactorShutdown();
+				//clockThread.join();
+			}				
 			gui.handleEvent(event);
 		}
 		
@@ -70,6 +76,7 @@ int Game::run()
 		streamObj << std::scientific << reactor.getMoney();
 		std::string moneyVar = streamObj.str();
 		streamObj.str("");
+		//streamObj << std::scientific << reactor.getPower();
 		streamObj << std::scientific << reactor.getPower();
 		std::string powerVar = streamObj.str();
 		
