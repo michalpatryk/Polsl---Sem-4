@@ -1,5 +1,6 @@
 #pragma once
 #include <TGUI/TGUI.hpp>
+#include "TileMap.h"
 #include <iostream>
 
 class Game
@@ -11,5 +12,6 @@ public:
 		vMode = VMode;
 	};
 	int run();
+	int TSP(int x, int y) { return(x + y * 23); }
 };
 

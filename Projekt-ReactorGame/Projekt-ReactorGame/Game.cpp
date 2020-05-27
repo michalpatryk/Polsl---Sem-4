@@ -10,7 +10,22 @@ int Game::run()
 	window.create(vMode, "test");
 	window.setFramerateLimit(60);
 	tgui::Gui gui(window);
-	//getFullPath(("../theme/reactorGame.txt"));
+	
+	int level[] =
+	{
+		0, TSP(3, 21), 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+		0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 2, 0, 0, 0, 0,
+		1, 1, 0, 0, 0, 0, 0, 0, 3, 3, 3, 3, 3, 3, 3, 3,
+		0, 1, 0, 0, 2, 0, 3, 3, 3, 0, 1, 1, 1, 0, 0, 0,
+		0, 1, 1, 0, 3, 3, 3, 0, 0, 0, 1, 1, 1, 2, 0, 0,
+		0, 0, 1, 0, 3, 0, 2, 2, 0, 0, 1, 1, 1, 1, 2, 0,
+		2, 0, 1, 0, 3, 0, 2, 2, 2, 0, 1, 1, 1, 1, 1, 1,
+		0, 0, 1, 0, 3, 2, 2, 2, 0, 0, 0, 0, 1, 1, 1, 1,
+	};
+	TileMap map;
+	if (!map.load("tileset.png", sf::Vector2u(32, 32), level, 16, 8, 230, 200))
+		return -1;
+	
 	try
 	{
 		gui.loadWidgetsFromFile("../gui/reactorGame.txt");
@@ -22,6 +37,8 @@ int Game::run()
 		std::cerr << "TGUI Exception: " << e.what() << std::endl;
 		return EXIT_FAILURE;
 	}
+
+	map.change(2, 2, sf::Vector2u(20, 3));
 	//Clock c1{10};
 	//std::thread t1{ c1 };
 	//t1.detach();
@@ -51,6 +68,7 @@ int Game::run()
 		
 		std::dynamic_pointer_cast<tgui::Label>(gui.get("Money_var"))->setText(moneyVar);
 		std::dynamic_pointer_cast<tgui::Label>(gui.get("Power_var"))->setText(powerVar);
+		window.draw(map);
 		window.display();
 	}
 	return EXIT_SUCCESS;

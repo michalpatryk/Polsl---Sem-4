@@ -17,17 +17,15 @@ public:
 			}
 		}
 	}
-	
-	Reactor(std::vector< std::vector<Tile>> tiles_) {
+
+	explicit Reactor(std::vector< std::vector<Tile>> tiles_) {
 		tiles = std::move(tiles_);
 	}
 	double getPower() const { return power; }
 
 	double getMoney() const { return money; }
 
-	void checkTick() {
-		power++;
-	}
+	void checkTick() { power++; }
 
 	bool buyPart(std::string type);
 
@@ -37,6 +35,6 @@ public:
 		money += power;
 		power = 0;
 	}
-	
+
 };
 
