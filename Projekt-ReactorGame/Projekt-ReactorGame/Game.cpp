@@ -46,14 +46,9 @@ int Game::run()
 		return EXIT_FAILURE;
 	}
 	
-	//std::thread clockThread(reactor.getClock(),std::ref( reactor.getTickCounter()), std::ref(exit));
-	std::thread clockThread(reactor.getClock(), std::ref(reactor.getTickCounter()), std::ref(reactor.getKillSwitch()));
-	//reactor.startClock();
-	//map.change(2, 2, sf::Vector2u(20, 3));
-	//Clock c1{10};
-	//std::thread t1{ c1 };
-	//t1.detach();
-	
+	//start reactor clock
+	std::thread clockThread(std::ref(reactor.getClock()));
+
 	while (window.isOpen())
 	{
 		reactor.checkTick();
@@ -63,7 +58,6 @@ int Game::run()
 		{
 			if (event.type == sf::Event::Closed) {
 				window.close();
-				//exit = true;
 				reactor.reactorShutdown();
 				clockThread.join();
 			}				
@@ -80,10 +74,10 @@ int Game::run()
 		streamObj << std::scientific << reactor.getPower();
 		//streamObj << std::scientific << reactor.getTickCounter();
 		std::string powerVar = streamObj.str();
-		
+		std::cout << reactor.getTick();
 		std::dynamic_pointer_cast<tgui::Label>(gui.get("Money_var"))->setText(moneyVar);
 		std::dynamic_pointer_cast<tgui::Label>(gui.get("Power_var"))->setText(powerVar);
-		
+
 		window.draw(map);
 		window.display();
 	}

@@ -6,19 +6,21 @@
 #include <thread>
 class Reactor
 {
+	//game data
 	double power = 0;
 	double money = 0;
+
+	//map data
 	std::vector<std::vector<Tile>> tiles;
 	std::vector<int> tileMap;
 	int width = 0;
 	int height = 0;
 	
-	int ticks = 0;
-
-	bool shutdown = false;
+	//clock
 	std::mutex mtx;
-	Clock clock{mtx};
+	Clock clock{ mtx};
 public:
+	///Map initialization
 	Reactor() {
 		tiles.resize(10);
 		for (int i = 0; i < 10; i++) {
@@ -62,39 +64,17 @@ public:
 		power = 0;
 	}
 
-	void startClock() {
-		//std::thread t1{c1, std::ref(ticks)};
-		//t1.detach();
-		int xd = 0;
-		int gettick = 0;
-		std::thread t1{ clock, std::ref(xd), std::ref(shutdown) };
-		t1.detach();
-		std::cout << "test";
-		int j = 1;
-		for(int i = 0; i < 1000000; i++) {
-			j = j * 2 * 2 * 2 * 2 * 2;
-			j /= 2;
-			j /= 2;
-			j /= 2;
-			j /= 2;
-			//gettick += clock.getTick();
-		}
-		std::cout << "test";
-		//shutdown = true;
-	}
-
+	//used to start a clock thread
 	Clock& getClock() {
 		return std::ref(clock);
 	}
-	int& getTickCounter() {
-		return std::ref(ticks);
+	//DEBUG ONLY FUNCTION - to know current ticks
+	int getTick() {
+		return clock.getTick();
 	}
 
-	bool& getKillSwitch() {
-		return std::ref(shutdown);
-	}
 	void reactorShutdown() {
-		shutdown = true;
+		clock.initializeShutdown();
 	}
 };
 
