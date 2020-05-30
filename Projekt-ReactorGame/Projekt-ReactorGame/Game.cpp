@@ -1,26 +1,38 @@
 #include "Game.h"
+
+#include <fstream>
+#include <iomanip>
+
+
 #include "Reactor.h"
+using json = nlohmann::json;
+
 void sru() {
 	std::cout << "sru";
 }
 
-//void level1(std::vector<int>level) {
-//	level = {
-//		0, 486, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-//		0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 2, 0, 0, 0, 0,
-//		1, 1, 0, 0, 0, 0, 0, 0, 3, 3, 3, 3, 3, 3, 3, 3,
-//		0, 1, 0, 0, 2, 0, 3, 3, 3, 0, 1, 1, 1, 0, 0, 0,
-//		0, 1, 1, 0, 3, 3, 3, 0, 0, 0, 1, 1, 1, 2, 0, 0,
-//		0, 0, 1, 0, 3, 0, 2, 2, 0, 0, 1, 1, 1, 1, 2, 0,
-//		2, 0, 1, 0, 3, 0, 2, 2, 2, 0, 1, 1, 1, 1, 1, 1,
-//		0, 0, 1, 0, 3, 2, 2, 2, 0, 0, 0, 0, 1, 1, 1, 1,
-//		1, 1, 1, 1, 3, 4, 1, 5, 4, 4, 3, 2, 1, 2, 3, 4
-//	};
-//}
+
 
 
 int Game::run()
 {
+	json j2 = {
+		{"pi", 3.141},
+		{"happy", true},
+		{"name", "Niels"},
+		{"nothing", nullptr},
+		{"answer", {
+			{"everything", 42}
+		}},
+		{"list", {1, 0, 2}},
+		{"object", {
+			{"currency", "USD"},
+			{"value", 42.99}
+		}}
+	};
+	std::cout<< j2["pi"];
+	std::ofstream o("file.json");
+	o << std::setw(4) << j2 << std::endl;
 	
 	window.create(vMode, "test");
 	window.setFramerateLimit(60);
@@ -32,7 +44,6 @@ int Game::run()
 	TileMap map;
 	if (!map.load("tileset.png", sf::Vector2u(32, 32), level, 16, 9, 230, 200))
 		return -1;
-	bool exit = false;
 	Reactor reactor{ level, 16, 9 };
 	try
 	{
@@ -74,7 +85,6 @@ int Game::run()
 		streamObj << std::scientific << reactor.getPower();
 		//streamObj << std::scientific << reactor.getTickCounter();
 		std::string powerVar = streamObj.str();
-		std::cout << reactor.getTick();
 		std::dynamic_pointer_cast<tgui::Label>(gui.get("Money_var"))->setText(moneyVar);
 		std::dynamic_pointer_cast<tgui::Label>(gui.get("Power_var"))->setText(powerVar);
 

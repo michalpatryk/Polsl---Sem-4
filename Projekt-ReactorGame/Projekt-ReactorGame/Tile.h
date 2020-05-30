@@ -20,6 +20,7 @@ public:
 	Tile(Coordinates location_, TileType tileType_) {
 		location = location_;
 		tileType = tileType_;
+		part = nullptr;
 	}
 	
 };

@@ -1,8 +1,8 @@
 #pragma once
 #include <TGUI/TGUI.hpp>
 #include "TileMap.h"
+#include <nlohmann/json.hpp>
 #include <iostream>
-
 class Game
 {
 	sf::RenderWindow window{};

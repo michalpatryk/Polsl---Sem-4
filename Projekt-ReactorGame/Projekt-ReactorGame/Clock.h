@@ -7,6 +7,13 @@ class Clock {
 	int level = 1;
 	bool shutdown = false;
 	std::mutex &mtx;
+
+	
+	void wait() {
+		double waitTime = (1000 * (1.0 - level / 8.0));
+		int time = static_cast<int>(waitTime);
+		std::this_thread::sleep_for(std::chrono::milliseconds(time));
+	}
 public:
 	Clock(std::mutex& mutex) :mtx(mutex){};
 	//Debug functions: pretty useless
@@ -18,11 +25,7 @@ public:
 	//	std::lock_guard<std::mutex> lck(mtx);
 	//	tick--;
 	//}
-	void wait() {
-		double waitTime = (1000 * (1.0 - level / 8.0));
-		int time = static_cast<int>(waitTime);
-		std::this_thread::sleep_for(std::chrono::milliseconds( time ));
-	}
+	
 	bool upgradeClock() {
 		if (level < 8) {
 			level++;

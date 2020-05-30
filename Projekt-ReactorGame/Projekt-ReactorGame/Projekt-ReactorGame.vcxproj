@@ -76,7 +76,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\michalpatryk\source\repos\MUsroda830\Libraries\SFML-2.5.1\include;C:\Users\michalpatryk\source\repos\MUsroda830\Libraries\TGUI-0.8\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\michalpatryk\source\repos\MUsroda830\Libraries\SFML-2.5.1\include;C:\Users\michalpatryk\source\repos\MUsroda830\Libraries\TGUI-0.8\include;C:\Users\michalpatryk\source\repos\MUsroda830\Projekt-ReactorGame\Projekt-ReactorGame\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>SFML_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -104,7 +104,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\michalpatryk\source\repos\MUsroda830\Libraries\SFML-2.5.1\include;C:\Users\michalpatryk\source\repos\MUsroda830\Libraries\TGUI-0.8\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\michalpatryk\source\repos\MUsroda830\Libraries\SFML-2.5.1\include;C:\Users\michalpatryk\source\repos\MUsroda830\Libraries\TGUI-0.8\include;C:\Users\michalpatryk\source\repos\MUsroda830\Projekt-ReactorGame\Projekt-ReactorGame\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

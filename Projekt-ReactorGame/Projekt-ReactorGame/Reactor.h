@@ -53,7 +53,13 @@ public:
 
 	double getMoney() const { return money; }
 
-	void checkTick() { power++; }
+	void checkTick() {
+		int ticks = clock.getTick();
+		clock.resetTick();
+		for (int i = 0; i < ticks; i++) {
+			power++;
+		}
+	}
 
 	bool buyPart(std::string type);
 
