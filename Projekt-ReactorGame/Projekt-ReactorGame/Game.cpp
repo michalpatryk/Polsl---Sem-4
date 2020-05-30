@@ -16,35 +16,19 @@ void sru() {
 
 int Game::run()
 {
-	json j2 = {
-		{"pi", 3.141},
-		{"happy", true},
-		{"name", "Niels"},
-		{"nothing", nullptr},
-		{"answer", {
-			{"everything", 42}
-		}},
-		{"list", {1, 0, 2}},
-		{"object", {
-			{"currency", "USD"},
-			{"value", 42.99}
-		}}
-	};
-	std::cout<< j2["pi"];
-	std::ofstream o("file.json");
-	o << std::setw(4) << j2 << std::endl;
-	
 	window.create(vMode, "test");
 	window.setFramerateLimit(60);
 	tgui::Gui gui(window);
 	
 	std::vector<int> a2 = { 1, 2, 3 };
 	level = levelGenerator("Default");
-
+	loadPartsJson();
+	std::cout << partsJson["parts"][0]["type"];
 	TileMap map;
 	if (!map.load("tileset.png", sf::Vector2u(32, 32), level, 16, 9, 230, 200))
 		return -1;
 	Reactor reactor{ level, 16, 9 };
+	
 	try
 	{
 		gui.loadWidgetsFromFile("../gui/reactorGame.txt");

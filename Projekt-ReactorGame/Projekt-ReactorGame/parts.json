@@ -1,0 +1,31 @@
+{
+    "parts": [
+        {
+            "baseMaxCapacity": 100.0,
+            "baseMaxHeat": 10.0,
+            "basePrice": 100.0,
+            "costMult": 1.8,
+            "description": "Increases maximum reactor power",
+            "model": "Basic Battery",
+            "type": 0
+        },
+        {
+            "baseMaxHeat": 10.0,
+            "basePowerGen": 1.0,
+            "basePrice": 10.0,
+            "costMult": 1.8,
+            "description": "Generates power with the power of the wind",
+            "model": "Wind turbine",
+            "type": 6
+        },
+        {
+            "baseMaxHeat": 10.0,
+            "baseMaxSell": 5.0,
+            "basePrice": 160.0,
+            "costMult": 1.8,
+            "description": "Sells your power",
+            "model": "Home office",
+            "type": 1
+        }
+    ]
+}

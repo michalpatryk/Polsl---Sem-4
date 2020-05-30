@@ -4,12 +4,14 @@
 #include <utility>
 #include <vector>
 #include <thread>
+#include <nlohmann/json.hpp>
 class Reactor
 {
 	//game data
 	double power = 0;
 	double money = 0;
 
+	
 	//map data
 	std::vector<std::vector<Tile>> tiles;
 	std::vector<int> tileMap;
@@ -21,30 +23,9 @@ class Reactor
 	Clock clock{ mtx};
 public:
 	///Map initialization
-	Reactor() {
-		tiles.resize(10);
-		for (int i = 0; i < 10; i++) {
-			tiles[i].resize(10);
-			for (int j = 0; j < 10; j++) {
-				tiles[i][j] = Tile{ Coordinates{i, j}, TileType::buildable };
-			}
-		}
-	}
+	Reactor();
 
-	Reactor(std::vector<int> tileMap, int width, int height): tileMap(tileMap), width(width), height(height) {
-		tiles.resize(height);
-		for (int i = 0; i < height; i++) {
-			tiles[i].resize(width);
-			for (int j = 0; j < width; j++) {
-				if(tileMap[i*width + j] == 47) {
-					tiles[i][j] = Tile{ Coordinates{i, j}, TileType::buildable };
-				}
-				else {
-					tiles[i][j] = Tile{ Coordinates{i, j}, TileType::unbuildable };
-				}
-			}
-		}
-	}
+	Reactor(std::vector<int> tileMap, int width, int height);
 
 	explicit Reactor(std::vector< std::vector<Tile>> tiles_) {
 		tiles = std::move(tiles_);
@@ -56,6 +37,9 @@ public:
 	void checkTick() {
 		int ticks = clock.getTick();
 		clock.resetTick();
+		//sell power by sellers
+
+		//gain power by generators
 		for (int i = 0; i < ticks; i++) {
 			power++;
 		}
