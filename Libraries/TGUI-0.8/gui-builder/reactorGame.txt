@@ -190,7 +190,7 @@ Label.Components {
     renderer = &2;
 }
 
-Picture.PowerLine {
+Picture."Wind turbine" {
     Position = (10, 170);
     Size = (30, 30);
 
@@ -200,37 +200,7 @@ Picture.PowerLine {
     }
 }
 
-Picture.GeneratorLine {
-    Position = (10, 250);
-    Size = (30, 30);
-
-    Renderer {
-        texture = "../resources/DefaultPicture.png";
-        transparenttexture = false;
-    }
-}
-
-Picture.ExtraLine {
-    Position = (10, 290);
-    Size = (30, 30);
-
-    Renderer {
-        texture = "../resources/DefaultPicture.png";
-        transparenttexture = false;
-    }
-}
-
-Picture.BatteryLine {
-    Position = (10, 330);
-    Size = (30, 30);
-
-    Renderer {
-        texture = "../resources/DefaultPicture.png";
-        transparenttexture = false;
-    }
-}
-
-Picture.PowerLine2 {
+Picture."Basic Battery" {
     Position = (10, 210);
     Size = (30, 30);
 
@@ -240,8 +210,8 @@ Picture.PowerLine2 {
     }
 }
 
-Picture.OfficeLine {
-    Position = (10, 370);
+Picture."Home office" {
+    Position = (10, 250);
     Size = (30, 30);
 
     Renderer {

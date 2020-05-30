@@ -45,9 +45,14 @@ public:
 		}
 	}
 
-	bool buyPart(std::string type);
+	void buyPart(nlohmann::json j) {
+		std::cout << j;
+		/*if(money > j["basePrice"]) {
+			std::cout << "Can purchase!" << std::endl;
+		}*/
+	};
 
-	float getPartPrice(std::string type);
+	//float getPartPrice(std::string type);
 
 	void sellPower() {
 		money += power;
