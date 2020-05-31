@@ -1,5 +1,7 @@
 #pragma once
+//function to delete, sf::Vector2i is just better
 struct Coordinates {
+	//top left is 00, bottom right is xx
 	int x;
 	int y;
 	Coordinates() { x = 0, y = 0; };

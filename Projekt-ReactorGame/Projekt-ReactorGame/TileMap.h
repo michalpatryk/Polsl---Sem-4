@@ -10,8 +10,7 @@ class TileMap : public sf::Drawable, public sf::Transformable
 	unsigned int tileSizeY = 0;
 	unsigned int tileMapWidth = 0;
 	unsigned int tileMapHeight = 0;
-	sf::Vector2i topLeftLocation;
-	sf::Vector2i bottomRightLocation;
+	sf::Vector2i location{0,0};
 	sf::VertexArray m_vertices;
 	sf::Texture m_tileset;
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const
@@ -27,17 +26,21 @@ class TileMap : public sf::Drawable, public sf::Transformable
 	}
 
 public:
+	sf::FloatRect getBounds() {
+		return m_vertices.getBounds();
+	}
 	//const int* tiles
 	bool load(const std::string& tileset, sf::Vector2u tileSize,  std::vector<int> tiles, unsigned int width, unsigned int height, unsigned int offsetX,
 		unsigned int offsetY)
 	{
-		topLeftLocation = sf::Vector2i(offsetX, offsetY);
-		bottomRightLocation = sf::Vector2i(offsetX + width * tileSize.x, offsetY + height * tileSize.y);
 		// load the tileset texture
 		if (!m_tileset.loadFromFile(tileset))
 			return false;
 		tileMapWidth = width;
 		tileMapHeight = height;
+		tileSizeX = tileSize.x;
+		tileSizeY = tileSize.y;
+		location.x = offsetX; location.y = offsetY;
 		// resize the vertex array to fit the level size
 		m_vertices.setPrimitiveType(sf::Quads);
 		m_vertices.resize(width * height * 4);
@@ -53,8 +56,7 @@ public:
 				int tu = tileNumber % (m_tileset.getSize().x / tileSize.x);
 				int tv = tileNumber / (m_tileset.getSize().x / tileSize.x);
 
-				tileSizeX = tileSize.x;
-				tileSizeY = tileSize.y;
+			
 				// get a pointer to the current tile's quad
 				sf::Vertex* quad = &m_vertices[(i + j * width) * 4];
 
@@ -81,8 +83,14 @@ public:
 		quad[1].texCoords = sf::Vector2f((type.x + 1) * tileSizeX, (type.y) * tileSizeY);
 		quad[2].texCoords = sf::Vector2f((type.x + 1) * tileSizeX, (type.y + 1) * tileSizeY);
 		quad[3].texCoords = sf::Vector2f((type.x) * tileSizeX, (type.y + 1) * tileSizeY);
-		std::cout << "test";
 	}
 
+	sf::Vector2i clickedCoordinates(sf::Vector2i mouseCoord) {
+		mouseCoord -= location;
+		mouseCoord.x = mouseCoord.x / tileSizeX;
+		mouseCoord.y = mouseCoord.y / tileSizeY;
+		return mouseCoord;
+	}
+	
 };
 

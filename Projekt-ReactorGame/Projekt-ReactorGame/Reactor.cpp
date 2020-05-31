@@ -5,7 +5,7 @@ Reactor::Reactor() {
 	for (int i = 0; i < 10; i++) {
 		tiles[i].resize(10);
 		for (int j = 0; j < 10; j++) {
-			tiles[i][j] = Tile{Coordinates{i, j}, TileType::buildable};
+			tiles[i][j] = Tile{ sf::Vector2i{i, j}, TileType::buildable};
 		}
 	}
 }
@@ -16,10 +16,10 @@ Reactor::Reactor(std::vector<int> tileMap, int width, int height): tileMap(tileM
 		tiles[i].resize(width);
 		for (int j = 0; j < width; j++) {
 			if (tileMap[i * width + j] == 47) {
-				tiles[i][j] = Tile{Coordinates{i, j}, TileType::buildable};
+				tiles[i][j] = Tile{ sf::Vector2i{i, j}, TileType::buildable};
 			}
 			else {
-				tiles[i][j] = Tile{Coordinates{i, j}, TileType::unbuildable};
+				tiles[i][j] = Tile{ sf::Vector2i{i, j}, TileType::unbuildable};
 			}
 		}
 	}

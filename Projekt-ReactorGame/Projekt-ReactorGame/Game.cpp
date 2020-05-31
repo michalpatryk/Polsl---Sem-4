@@ -22,7 +22,7 @@ int Game::run()
 	TileMap map;
 	if (!map.load("tileset.png", sf::Vector2u(32, 32), level, 16, 9, 230, 200))
 		return -1;
-	
+
 	Reactor reactor{ level, 16, 9 };
 	try
 	{
@@ -58,7 +58,9 @@ int Game::run()
 			}
 			if (event.type == sf::Event::MouseButtonPressed) {
 				if(event.key.code == sf::Mouse::Left) {
-					//if(sf::Mouse::getPosition().x > )
+					if(map.getBounds().contains(window.mapPixelToCoords(sf::Mouse::getPosition(window)))) {	//check if mouse buttone pressed on tilemap
+						sf::Vector2i a = map.clickedCoordinates(sf::Mouse::getPosition(window));
+					}
 				}
 			}
 			gui.handleEvent(event);
