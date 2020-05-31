@@ -8,7 +8,7 @@
             "description": "Increases maximum reactor power",
             "model": "Basic Battery",
             "type": 0,
-			"textureX": 2,
+			"textureX": 3,
 			"textureY": 0
         },
         {
@@ -19,7 +19,7 @@
             "description": "Generates power with the power of the wind",
             "model": "Wind turbine",
             "type": 6,
-			"textureX": 0,
+			"textureX": 1,
 			"textureY": 0
         },
         {
@@ -30,7 +30,7 @@
             "description": "Sells your power",
             "model": "Home office",
             "type": 1,
-			"textureX": 1,
+			"textureX": 2,
 			"textureY": 0
         }
     ]

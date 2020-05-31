@@ -63,8 +63,9 @@ int Game::run()
 			if (event.type == sf::Event::MouseButtonPressed) {
 				if(event.key.code == sf::Mouse::Left) {
 					if(map.getBounds().contains(window.mapPixelToCoords(sf::Mouse::getPosition(window)))) {	//check if mouse buttone pressed on tilemap
-						sf::Vector2i a = map.clickedCoordinates(sf::Mouse::getPosition(window));
-						std::dynamic_pointer_cast<tgui::TextBox>(gui.get("TextBox1"))->setText(reactor.buyPart(getTypeJson(selectedPart), a));
+						//sf::Vector2i a = ;
+						std::dynamic_pointer_cast<tgui::TextBox>(gui.get("TextBox1"))->setText(
+							reactor.buyPart(getTypeJson(selectedPart), map.clickedCoordinates(sf::Mouse::getPosition(window)), partMap));
 					}
 				}
 			}

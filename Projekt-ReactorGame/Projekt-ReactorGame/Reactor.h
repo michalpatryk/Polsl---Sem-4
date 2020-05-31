@@ -5,6 +5,7 @@
 #include <vector>
 #include <thread>
 #include <nlohmann/json.hpp>
+#include "TileMap.h"
 class Reactor
 {
 	//game data
@@ -44,13 +45,15 @@ public:
 		}
 	}
 
-	std::string buyPart(nlohmann::json j, sf::Vector2i location) {
+	std::string buyPart(nlohmann::json j, sf::Vector2i location, TileMap &partMap) {
 		std::cout << location.x << " " << location.y << std::endl;
 		std::cout << j << std::endl;
 		if(tiles[location.y][location.x].getTileType() == TileType::buildable) {
 			if(tiles[location.y][location.x].getPart() == nullptr) {
 				if (money > getFullPrice(j)) {
+					money -= getFullPrice(j);
 					tiles[location.y][location.x].createPart(j);
+					partMap.change(location, sf::Vector2i{ j["textureX"], j["textureY"] });
 					return (j["model"].get<std::string>() += " built!");
 				}
 				else return "Not enough money";

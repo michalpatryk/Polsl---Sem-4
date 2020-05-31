@@ -75,10 +75,8 @@ public:
 
 		return true;
 	}
-	void change(int x, int y, sf::Vector2u type) {
-		int textureSizeX = 32;
-		int textureSizeY = 32;
-		sf::Vertex* quad = &m_vertices[(x + y * tileMapWidth)*4];
+	void change(sf::Vector2i coordinates, sf::Vector2i type) {
+		sf::Vertex* quad = &m_vertices[(coordinates.x + coordinates.y * tileMapWidth)*4];
 		quad[0].texCoords = sf::Vector2f((type.x) * tileSizeX, (type.y) * tileSizeY);
 		quad[1].texCoords = sf::Vector2f((type.x + 1) * tileSizeX, (type.y) * tileSizeY);
 		quad[2].texCoords = sf::Vector2f((type.x + 1) * tileSizeX, (type.y + 1) * tileSizeY);
