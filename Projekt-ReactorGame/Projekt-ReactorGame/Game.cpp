@@ -43,7 +43,7 @@ int Game::run()
 	}
 	//start reactor clock
 	std::thread clockThread(std::ref(reactor.getClock()));
-
+	
 	while (window.isOpen())
 	{
 		reactor.checkTick();
@@ -56,13 +56,18 @@ int Game::run()
 				reactor.reactorShutdown();
 				clockThread.join();
 			}
+			if (event.type == sf::Event::MouseButtonPressed) {
+				if(event.key.code == sf::Mouse::Left) {
+					//if(sf::Mouse::getPosition().x > )
+				}
+			}
 			gui.handleEvent(event);
 		}
 		//optimize me
 		if(txtBoxChanged == true)	std::dynamic_pointer_cast<tgui::TextBox>(gui.get("TextBox1"))->setText(textBoxText());
-		
+		//std::cout << getTypeJson(selectedPart);
 		window.clear(sf::Color::White);
-
+		//reactor.buyPart(partsJson[selectedPart]);
 		gui.draw();
 		std::ostringstream streamObj;
 		streamObj << std::scientific << reactor.getMoney();
@@ -96,6 +101,22 @@ inline std::vector<int> Game::levelGenerator(std::string levelType) {
 		};
 	}
 	return level;
+}
+
+std::string Game::textBoxText() {
+	nlohmann::json j = getTypeJson(selectedPart);
+	std::ostringstream oss;
+	oss << j["model"].get<std::string>() << ":	" << j["description"].get<std::string>() << std::endl;
+	oss << "Price:	" << j["basePrice"].get<float>() << std::endl;
+
+	if (j["type"] == Types::Battery) {
+		oss << "Capacity:	" << j["baseMaxCapacity"] << std::endl; //!get multipliers from reactor
+	}
+	if (j["type"] == Types::PowerSource) {
+		oss << "Power generation:	" << j["basePowerGen"] << std::endl; //!get multipliers from reactor
+	}
+	std::string a = oss.str();
+	return a;
 }
 
 nlohmann::json Game::getTypeJson(std::string type) {

@@ -20,6 +20,7 @@ public:
 		std::vector<nlohmann::json> alljSon;
 		std::ifstream i(filename);
 		nlohmann::json j = nlohmann::json::parse(i);
+	//	loadedJson = j;
 		return j;
 	}
 };

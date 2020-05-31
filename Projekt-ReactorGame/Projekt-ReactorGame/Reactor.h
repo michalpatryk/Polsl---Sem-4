@@ -53,7 +53,9 @@ public:
 	};
 
 	//float getPartPrice(std::string type);
-
+	nlohmann::json getPostUpgradePart(nlohmann::json j) {
+		return j;
+	}
 	void sellPower() {
 		money += power;
 		power = 0;
@@ -70,6 +72,9 @@ public:
 
 	void reactorShutdown() {
 		clock.initializeShutdown();
+	}
+	std::vector<std::vector<Tile>>& getTiles() {
+		return tiles;
 	}
 };
 

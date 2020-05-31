@@ -10,6 +10,8 @@ class TileMap : public sf::Drawable, public sf::Transformable
 	unsigned int tileSizeY = 0;
 	unsigned int tileMapWidth = 0;
 	unsigned int tileMapHeight = 0;
+	sf::Vector2i topLeftLocation;
+	sf::Vector2i bottomRightLocation;
 	sf::VertexArray m_vertices;
 	sf::Texture m_tileset;
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const
@@ -29,6 +31,8 @@ public:
 	bool load(const std::string& tileset, sf::Vector2u tileSize,  std::vector<int> tiles, unsigned int width, unsigned int height, unsigned int offsetX,
 		unsigned int offsetY)
 	{
+		topLeftLocation = sf::Vector2i(offsetX, offsetY);
+		bottomRightLocation = sf::Vector2i(offsetX + width * tileSize.x, offsetY + height * tileSize.y);
 		// load the tileset texture
 		if (!m_tileset.loadFromFile(tileset))
 			return false;

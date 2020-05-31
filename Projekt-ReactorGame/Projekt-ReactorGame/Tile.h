@@ -9,19 +9,22 @@ class Tile
 {
 	Coordinates location;
 	TileType tileType;
-	std::unique_ptr<Part> part;
+	std::unique_ptr<Part> part{};
 	//Part part;
 public:
 	Tile() {
 		location = Coordinates{ 0,0 };
 		tileType = TileType::buildable;
-		part = nullptr;
+		//part = nullptr;
 	}
 	Tile(Coordinates location_, TileType tileType_) {
 		location = location_;
 		tileType = tileType_;
-		part = nullptr;
+		//part = nullptr;
 	}
-	
+	void createPart(nlohmann::json j) {
+		part = std::make_unique<Part>(j);
+	}
+//	friend class Game;
 };
 
