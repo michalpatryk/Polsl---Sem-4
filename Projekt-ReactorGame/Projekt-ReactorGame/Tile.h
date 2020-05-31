@@ -25,7 +25,10 @@ public:
 		//part = nullptr;
 	}
 	void createPart(nlohmann::json j) {
-		part = std::make_unique<Part>(j);
+		part = std::make_shared<Part>(j);
+	}
+	void deletePart(){
+		part = nullptr;
 	}
 	std::shared_ptr<Part> getPart() {
 		std::cout << part.use_count();;

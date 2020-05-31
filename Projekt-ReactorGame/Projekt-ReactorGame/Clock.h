@@ -4,7 +4,7 @@
 //std::mutex mtx;
 class Clock {
 	int tick = 0;
-	int level = 1;
+	int level = 5;
 	bool shutdown = false;
 	std::mutex &mtx;
 

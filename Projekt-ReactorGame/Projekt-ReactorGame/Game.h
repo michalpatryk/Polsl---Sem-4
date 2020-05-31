@@ -10,6 +10,7 @@ class Game
 	sf::RenderWindow window{};
 	sf::VideoMode vMode{};
 	std::vector<int> level;
+	std::vector<int> parts;
 	std::string selectedPart = "Wind turbine";
 	nlohmann::json partsJson;
 	JsonManager jsonManager;
@@ -22,6 +23,7 @@ public:
 	int TSP(int x, int y) { return(x + y * 23); }
 	void loadPartsJson(std::string filename) { partsJson = jsonManager.loadJson(filename); }
 	std::vector<int> levelGenerator(std::string levelType);
+
 	std::string textBoxText();
 
 	nlohmann::json getTypeJson(std::string type);

@@ -28,12 +28,12 @@ public:
 		type = j["type"];
 		model = j["model"].get<std::string>();
 		description = j["description"].get<std::string>();
-		basePrice = j["basePrice"];
-		costMult = j["costMult"];
-		if(j["baseMaxHeat"]) {
+		basePrice = j["basePrice"].get<double>();
+		costMult = j["costMult"].get<double>();
+		if(j["baseMaxHeat"].get<float>()) {
 			heatAffected = true;
 		}
-		else false;
+		else heatAffected = false;
 	}
 	virtual void draw(){};
 };

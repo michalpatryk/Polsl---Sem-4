@@ -10,7 +10,7 @@ Reactor::Reactor() {
 	}
 }
 
-Reactor::Reactor(std::vector<int> tileMap, int width, int height): tileMap(tileMap), width(width), height(height) {
+Reactor::Reactor(std::vector<int> tileMap, int width, int height): tileMap(tileMap){
 	tiles.resize(height);
 	for (int i = 0; i < height; i++) {
 		tiles[i].resize(width);

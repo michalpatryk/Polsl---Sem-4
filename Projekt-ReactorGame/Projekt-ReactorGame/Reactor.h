@@ -15,8 +15,7 @@ class Reactor
 	//map data
 	std::vector<std::vector<Tile>> tiles;
 	std::vector<int> tileMap;
-	int width = 0;
-	int height = 0;
+
 	
 	//clock
 	std::mutex mtx;
@@ -51,6 +50,7 @@ public:
 		if(tiles[location.y][location.x].getTileType() == TileType::buildable) {
 			if(tiles[location.y][location.x].getPart() == nullptr) {
 				if (money > getFullPrice(j)) {
+					tiles[location.y][location.x].createPart(j);
 					return (j["model"].get<std::string>() += " built!");
 				}
 				else return "Not enough money";
