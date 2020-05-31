@@ -14,6 +14,7 @@ enum class Types {
 
 class Part
 {
+protected:
 	Types type;
 	std::string model;
 	std::string description;

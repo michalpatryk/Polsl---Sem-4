@@ -1,6 +1,7 @@
 #pragma once
 #include "Coordinates.h"
 #include  "Part.h"
+#include <iostream>
 #include <string>
 #include <SFML/System/Vector2.hpp>
 
@@ -10,7 +11,7 @@ class Tile
 {
 	sf::Vector2i location;
 	TileType tileType;
-	std::unique_ptr<Part> part{};
+	std::shared_ptr<Part> part{};
 	//Part part;
 public:
 	Tile() {
@@ -25,6 +26,13 @@ public:
 	}
 	void createPart(nlohmann::json j) {
 		part = std::make_unique<Part>(j);
+	}
+	std::shared_ptr<Part> getPart() {
+		std::cout << part.use_count();;
+		return part;
+	}
+	TileType getTileType() {
+		return tileType;
 	}
 //	friend class Game;
 };

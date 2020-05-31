@@ -45,11 +45,21 @@ public:
 		}
 	}
 
-	void buyPart(nlohmann::json j) {
-		std::cout << j;
-		/*if(money > j["basePrice"]) {
-			std::cout << "Can purchase!" << std::endl;
-		}*/
+	std::string buyPart(nlohmann::json j, sf::Vector2i location) {
+		std::cout << location.x << " " << location.y << std::endl;
+		std::cout << j << std::endl;
+		if(tiles[location.y][location.x].getTileType() == TileType::buildable) {
+			if(tiles[location.y][location.x].getPart() == nullptr) {
+				if (money > getFullPrice(j)) {
+					return (j["model"].get<std::string>() += " built!");
+				}
+				else return "Not enough money";
+			}
+			else return "There is already a part here!";
+		}
+		else return "You can't build on this tile!";
+		
+		return ".";
 	};
 
 	//float getPartPrice(std::string type);
@@ -75,6 +85,11 @@ public:
 	}
 	std::vector<std::vector<Tile>>& getTiles() {
 		return tiles;
+	}
+
+	float getFullPrice(nlohmann::json j) {
+		//add upgrades handle here
+		return j["basePrice"].get<float>();
 	}
 };
 
