@@ -22,7 +22,11 @@ int Game::run()
 	TileMap map;
 	if (!map.load("tileset.png", sf::Vector2u(32, 32), level, 16, 9, 230, 200))
 		return -1;
+	TileMap partMap;
+	if (!partMap.load("partsTileset.png", sf::Vector2u(32, 32), std::vector<int>(144, 0), 16, 9, 230, 200))
+		return -1;
 
+	
 	Reactor reactor{ level, 16, 9 };
 	try
 	{
@@ -86,6 +90,7 @@ int Game::run()
 		std::dynamic_pointer_cast<tgui::Label>(gui.get("Power_var"))->setText(powerVar);
 	
 		window.draw(map);
+		window.draw(partMap);
 		window.display();
 	}
 	return EXIT_SUCCESS;

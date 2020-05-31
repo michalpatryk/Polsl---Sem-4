@@ -7,7 +7,9 @@
             "costMult": 1.8,
             "description": "Increases maximum reactor power",
             "model": "Basic Battery",
-            "type": 0
+            "type": 0,
+			"textureX": 2,
+			"textureY": 0
         },
         {
             "baseMaxHeat": 10.0,
@@ -16,7 +18,9 @@
             "costMult": 1.8,
             "description": "Generates power with the power of the wind",
             "model": "Wind turbine",
-            "type": 6
+            "type": 6,
+			"textureX": 0,
+			"textureY": 0
         },
         {
             "baseMaxHeat": 10.0,
@@ -25,7 +29,9 @@
             "costMult": 1.8,
             "description": "Sells your power",
             "model": "Home office",
-            "type": 1
+            "type": 1,
+			"textureX": 1,
+			"textureY": 0
         }
     ]
 }
