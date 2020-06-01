@@ -38,6 +38,8 @@ public:
 		case Types::Seller:
 			part = std::make_shared<Seller>(j);
 			break;
+		default:
+			throw std::runtime_error("Can't create part: Type not specified");
 		}
 	}
 	

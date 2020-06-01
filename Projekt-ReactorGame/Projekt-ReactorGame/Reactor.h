@@ -13,15 +13,15 @@ class Reactor
 	double maxPower = 100;
 	double money = 0;
 
-	
+
 	//map data
 	std::vector<std::vector<Tile>> tiles;
 	std::vector<int> tileMap;
 
-	
+
 	//clock
 	std::mutex mtx;
-	Clock clock{ mtx};
+	Clock clock{ mtx };
 public:
 	///Map initialization
 	Reactor();
@@ -34,16 +34,29 @@ public:
 	double getPower() const { return power; }
 
 	double getMoney() const { return money; }
-
+	
+	/**	Checks if clock have any ticks, if yes it calculates all elements.
+	 *
+	 */
 	void checkTick() {
 		int ticks = clock.getTick();
 		clock.resetTick();
-		
 
-		
 		for (int i = 0; i < ticks; i++) {
 			//sell power by sellers
-
+			double sellingPower = 0;
+			for (auto it : tiles) {
+				for (auto jt : it) {
+					std::shared_ptr<Part> part = jt.getPart();
+					if(part) {
+						if (part->getType() == Types::Seller) {
+							sellingPower += std::static_pointer_cast<Seller>(part)->getBaseSell();
+						}
+					}
+				}
+			}
+			power -= sellingPower;
+			money += sellingPower;
 
 			//gain power by generators
 			for (auto it : tiles) {
@@ -69,12 +82,12 @@ public:
 		return j;
 	}
 	void sellPower() {
-		if(money < 11) {
+		if (money < 11) {
 			money++;
 		}
 		money += power;
 		power = 0;
-		
+
 	}
 
 	//used to start a clock thread
@@ -107,7 +120,7 @@ public:
 		}
 	}
 
-	
+
 	float getFullPrice(nlohmann::json j) {
 		//add upgrades handle here
 		return j["basePrice"].get<float>();

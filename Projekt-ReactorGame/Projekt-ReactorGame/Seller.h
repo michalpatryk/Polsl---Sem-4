@@ -10,5 +10,8 @@ public:
 		baseSell = j["baseSell"];
 		baseMaxHeat = j["baseMaxHeat"];
 	}
+	double getBaseSell() {
+		return baseSell;
+	}
 };
 
