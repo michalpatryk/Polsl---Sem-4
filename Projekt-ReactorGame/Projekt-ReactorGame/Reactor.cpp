@@ -26,8 +26,9 @@ Reactor::Reactor(std::vector<int> tileMap, int width, int height): tileMap(tileM
 }
 
 std::string Reactor::buyPart(nlohmann::json j, sf::Vector2i location, TileMap& partMap) {
-	if (tiles[location.y][location.x].getTileType() == TileType::buildable) {
-		if (tiles[location.y][location.x].getPart() == nullptr) {
+	auto tile = tiles[location.y][location.x];
+	if (tile.getTileType() == TileType::buildable) {
+		if (tile.getPart() == nullptr) {
 			if (money >= getFullPrice(j)) {
 				money -= getFullPrice(j);
 				tiles[location.y][location.x].createPart(j);
@@ -48,14 +49,15 @@ std::string Reactor::buyPart(nlohmann::json j, sf::Vector2i location, TileMap& p
 	return ".";
 }
 
-std::string Reactor::sellPart(nlohmann::json j, sf::Vector2i location, TileMap& partMap) {
-	if (tiles[location.y][location.x].getTileType() == TileType::buildable) {
-		if (tiles[location.y][location.x].getPart() != nullptr) {
-			money += getFullPrice(j);
+std::string Reactor::sellPart(sf::Vector2i location, TileMap& partMap) {
+	auto tile = tiles[location.y][location.x];
+	if (tile.getTileType() == TileType::buildable) {
+		if (tile.getPart() != nullptr) {
+			money += getFullPrice(tile.getPart()->getType(), tile.getPart()->getBasePrice());
 			tiles[location.y][location.x].deletePart();
 			partMap.change(location, sf::Vector2i{ 0, 0 });
 
-			if (j["type"] == Types::Battery) {
+			if (tile.getPart()->getType() == Types::Battery) {
 				recalculateMaxPower();
 			}
 			

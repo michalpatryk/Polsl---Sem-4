@@ -75,7 +75,7 @@ public:
 	}
 
 	std::string buyPart(nlohmann::json j, sf::Vector2i location, TileMap& partMap);
-	std::string sellPart(nlohmann::json j, sf::Vector2i location, TileMap& partMap);
+	std::string sellPart(sf::Vector2i location, TileMap& partMap);
 
 	//float getPartPrice(std::string type);
 	nlohmann::json getPostUpgradePart(nlohmann::json j) {
@@ -120,10 +120,13 @@ public:
 		}
 	}
 
-
-	float getFullPrice(nlohmann::json j) {
+	double getFullPrice(nlohmann::json j) {
+		return j["basePrice"].get<double>();
+	}
+	double getFullPrice(Types type, double price) {
+		return price;
 		//add upgrades handle here
-		return j["basePrice"].get<float>();
+		//return j["basePrice"].get<float>();
 	}
 	float getMaxPower() { return maxPower; }
 };

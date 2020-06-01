@@ -67,7 +67,7 @@ int Game::run()
 				else if (event.key.code == sf::Mouse::Right) {
 					if (map.getBounds().contains(window.mapPixelToCoords(sf::Mouse::getPosition(window)))) {
 						std::dynamic_pointer_cast<tgui::TextBox>(gui.get("TextBox1"))->setText(
-							reactor.sellPart(getTypeJson(selectedPart), map.clickedCoordinates(sf::Mouse::getPosition(window)), partMap));
+							reactor.sellPart(map.clickedCoordinates(sf::Mouse::getPosition(window)), partMap));
 						std::dynamic_pointer_cast<tgui::Label>(gui.get("MaxPower_var"))->setText(labelMaxPowerText(reactor));
 					}
 				}
@@ -82,7 +82,7 @@ int Game::run()
 			else if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Right)) {
 				if (map.getBounds().contains(window.mapPixelToCoords(sf::Mouse::getPosition(window)))) {	
 					std::dynamic_pointer_cast<tgui::TextBox>(gui.get("TextBox1"))->setText(
-						reactor.sellPart(getTypeJson(selectedPart), map.clickedCoordinates(sf::Mouse::getPosition(window)), partMap));
+						reactor.sellPart(map.clickedCoordinates(sf::Mouse::getPosition(window)), partMap));
 					std::dynamic_pointer_cast<tgui::Label>(gui.get("MaxPower_var"))->setText(labelMaxPowerText(reactor));
 				}
 			}
