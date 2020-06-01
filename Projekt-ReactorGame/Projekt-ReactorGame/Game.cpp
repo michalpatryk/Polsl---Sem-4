@@ -153,6 +153,13 @@ std::string Game::textBoxText() {
 	return a;
 }
 
+std::string Game::labelMaxPowerText(Reactor& reactor) {
+	std::ostringstream streamObj;
+	streamObj << std::scientific << reactor.getMaxPower();
+	std::string maxPowerVar = streamObj.str();
+	return maxPowerVar;
+}
+
 nlohmann::json Game::getTypeJson(std::string type) {
 	for (auto it = partsJson["parts"].begin(); it != partsJson["parts"].end(); ++it) {
 		if (it.value()["model"] == type) {

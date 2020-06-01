@@ -26,6 +26,9 @@ public:
 		tileType = TileType::buildable;
 		//part = nullptr;
 	}
+
+
+
 	Tile(sf::Vector2i location_, TileType tileType_) {
 		location = location_;
 		tileType = tileType_;
@@ -62,6 +65,9 @@ public:
 	}
 	TileType getTileType() {
 		return tileType;
+	}
+	sf::Vector2i getLocation() const {
+		return location;
 	}
 //	friend class Game;
 };

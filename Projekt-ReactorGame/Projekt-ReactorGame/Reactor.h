@@ -3,7 +3,6 @@
 #include "Clock.h"
 #include <utility>
 #include <vector>
-#include <thread>
 #include <nlohmann/json.hpp>
 #include "TileMap.h"
 class Reactor
@@ -39,13 +38,13 @@ public:
 	 *
 	 */
 	void checkTick() {
-		int ticks = clock.getTick();
+		const int ticks = clock.getTick();
 		clock.resetTick();
 
 		for (int i = 0; i < ticks; i++) {
 			//sell power by sellers
 			double sellingPower = 0;
-			for (auto it : tiles) {
+			for (const auto& it : tiles) {
 				for (auto jt : it) {
 					std::shared_ptr<Part> part = jt.getPart();
 					if(part) {
@@ -59,16 +58,40 @@ public:
 			money += sellingPower;
 
 			//gain power by generators
-			for (auto it : tiles) {
+			std::vector<Tile> heatGeneratorTiles;
+			for (auto& it : tiles) {
 				for (auto jt : it) {
 					std::shared_ptr<Part> part = jt.getPart();
 					if (part) {
 						if (part->getType() == Types::PowerSource) {
 							power += std::static_pointer_cast<PowerSource>(part)->getBasePowerGeneration();
 						}
+						else if(part->getType() == Types::HeatSource) {
+							heatGeneratorTiles.push_back(jt);
+						}
 					}
 				}
 			}
+			
+			for (auto it : heatGeneratorTiles) {
+				std::vector<Tile> tilesToHeatUp;
+				sf::Vector2i loc = it.getLocation();
+				std::cout << std::endl;
+				std::cout << loc.x - 1 << "\t" << loc.x + 1 << std::endl;
+				std::cout << loc.y - 1 << "\t" << loc.y + 1 << std::endl << std::endl;
+
+				if ((loc.x - 1) >= 0)	tilesToHeatUp.push_back(tiles[loc.y][loc.x - 1]);
+				if ((loc.x + 1) <= static_cast<int>(tiles[loc.x].size()))	tilesToHeatUp.push_back(tiles[loc.y][loc.x + 1]);
+				if ((loc.y - 1) >= 0)	tilesToHeatUp.push_back(tiles[loc.y - 1][loc.x]);
+				if ((loc.y + 1) <= static_cast<int>(tiles.size()))	tilesToHeatUp.push_back(tiles[loc.y + 1][loc.x]);
+				
+			}
+			for(unsigned int it = 0; it < tiles.size(); it++) {
+				for(unsigned int jt = 0; jt < tiles[i].size(); jt++) {
+					
+				}
+			}
+			
 			power++;
 		}
 		if (power > maxPower) { power = maxPower; }
@@ -108,7 +131,7 @@ public:
 
 	void recalculateMaxPower() {
 		maxPower = 100;
-		for (auto it : tiles) {
+		for (const auto& it : tiles) {
 			for (auto jt : it) {
 				std::shared_ptr<Part> part = jt.getPart();
 				if (part) {
@@ -128,6 +151,6 @@ public:
 		//add upgrades handle here
 		//return j["basePrice"].get<float>();
 	}
-	float getMaxPower() { return maxPower; }
+	double getMaxPower() { return maxPower; }
 };
 

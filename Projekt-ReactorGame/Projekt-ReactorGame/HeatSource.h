@@ -9,7 +9,6 @@ class HeatSource :
 	double durability;
 public:
 	HeatSource(nlohmann::json j):Part(j) {
-		std::cout << "123";
 		baseHeatGeneration = j["baseHeatGen"];
 		baseDurability = j["baseDurability"];
 		durability = baseDurability;	//add upgrade handle in the future
