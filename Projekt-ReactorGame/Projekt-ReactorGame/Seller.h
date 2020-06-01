@@ -2,8 +2,13 @@
 #include "Part.h"
 class Seller :public Part
 {
-	double baseCapacity;
+	double baseSell;
 	double heat;
 	double baseMaxHeat;
+public:
+	Seller(nlohmann::json j):Part(j) {
+		baseSell = j["baseSell"];
+		baseMaxHeat = j["baseMaxHeat"];
+	}
 };
 

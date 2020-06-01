@@ -9,7 +9,7 @@ class Battery :public Part
 public:
 	Battery(nlohmann::json j):Part(j) {
 		baseMaxHeat = j["baseMaxHeat"];
-		capacity = j["baseMaxCapacity"];
+		capacity = j["baseCapacity"];
 	}
 	double getCapacity() {
 		return capacity;

@@ -1,7 +1,7 @@
 {
     "parts": [
         {
-            "baseMaxCapacity": 100.0,
+            "baseCapacity": 100.0,
             "baseMaxHeat": 10.0,
             "basePrice": 100.0,
             "costMult": 1.8,
@@ -13,7 +13,7 @@
         },
         {
             "baseMaxHeat": 10.0,
-            "basePowerGeneration": 1.0,
+            "basePowerGeneration": 4.0,
             "basePrice": 10.0,
             "costMult": 1.8,
             "description": "Generates power with the power of the wind",
@@ -24,7 +24,7 @@
         },
         {
             "baseMaxHeat": 10.0,
-            "baseMaxSell": 5.0,
+            "baseSell": 5.0,
             "basePrice": 160.0,
             "costMult": 1.8,
             "description": "Sells your power",

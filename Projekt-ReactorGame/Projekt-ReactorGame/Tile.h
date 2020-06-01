@@ -3,6 +3,7 @@
 #include  "Part.h"
 #include "PowerSource.h"
 #include "Battery.h"
+#include "Seller.h"
 #include <iostream>
 #include <string>
 #include <SFML/System/Vector2.hpp>
@@ -27,15 +28,19 @@ public:
 		//part = nullptr;
 	}
 	void createPart(nlohmann::json j) {
-		if(j["type"] == Types::PowerSource) {
+		switch ((Types)j["type"]) {
+		case Types::PowerSource:
 			part = std::make_shared<PowerSource>(j);
-		}
-		else if (j["type"] == Types::Battery) {
+			break;
+		case Types::Battery:
 			part = std::make_shared<Battery>(j);
+			break;
+		case Types::Seller:
+			part = std::make_shared<Seller>(j);
+			break;
 		}
-		//part = std::make_shared<PowerSource>(j);
-		//part = std::make_shared<Part>(j);
 	}
+	
 	void deletePart(){
 		part = nullptr;
 	}
