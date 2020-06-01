@@ -25,7 +25,12 @@ public:
 	std::vector<int> levelGenerator(std::string levelType);
 
 	std::string textBoxText();
-
+	std::string labelMaxPowerText(Reactor &reactor) {
+		std::ostringstream streamObj;
+		streamObj << std::scientific << reactor.getMaxPower();
+		std::string maxPowerVar = streamObj.str();
+		return maxPowerVar;
+	}
 	nlohmann::json getTypeJson(std::string type);
 
 };

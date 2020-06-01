@@ -4,11 +4,6 @@ void sru() {
 	std::cout << "sru" << std::endl;
 }
 
-void sru2(int i) {
-	std::cout << "sru: " << i << std::endl;
-}
-
-
 int Game::run()
 {
 	window.create(vMode, "test");
@@ -26,13 +21,14 @@ int Game::run()
 	if (!partMap.load("partsTileset.png", sf::Vector2u(32, 32), std::vector<int>(144, 0), 16, 9, 230, 200))
 		return -1;
 
-	
+
 	Reactor reactor{ level, 16, 9 };
 	try
 	{
 		gui.loadWidgetsFromFile("../gui/reactorGame.txt");
+		std::dynamic_pointer_cast<tgui::Label>(gui.get("MaxPower_var"))->setText(labelMaxPowerText(reactor));
 		std::dynamic_pointer_cast<tgui::Button>(gui.get("powerSell"))->connect("clicked", [&]() { reactor.sellPower(); });
-		std::dynamic_pointer_cast<tgui::Label>(gui.get("Money_var"))->connect("MouseEntered", sru);
+		//std::dynamic_pointer_cast<tgui::Label>(gui.get("Money_var"))->connect("MouseEntered", sru);
 		std::dynamic_pointer_cast<tgui::ClickableWidget>(gui.get("Wind turbine"))->connect(
 			"clicked", [&]() { selectedPart = "Wind turbine"; txtBoxChanged = true; });
 		std::dynamic_pointer_cast<tgui::ClickableWidget>(gui.get("Basic Battery"))->connect(
@@ -47,7 +43,7 @@ int Game::run()
 	}
 	//start reactor clock
 	std::thread clockThread(std::ref(reactor.getClock()));
-	
+
 	while (window.isOpen())
 	{
 		reactor.checkTick();
@@ -61,18 +57,33 @@ int Game::run()
 				clockThread.join();
 			}
 			if (event.type == sf::Event::MouseButtonPressed) {
-				if(event.key.code == sf::Mouse::Left) {
-					if(map.getBounds().contains(window.mapPixelToCoords(sf::Mouse::getPosition(window)))) {	//check if mouse buttone pressed on tilemap
-						//sf::Vector2i a = ;
+				if (event.key.code == sf::Mouse::Left) {
+					if (map.getBounds().contains(window.mapPixelToCoords(sf::Mouse::getPosition(window)))) {	//check if mouse buttone pressed on tilemap
 						std::dynamic_pointer_cast<tgui::TextBox>(gui.get("TextBox1"))->setText(
 							reactor.buyPart(getTypeJson(selectedPart), map.clickedCoordinates(sf::Mouse::getPosition(window)), partMap));
+						std::dynamic_pointer_cast<tgui::Label>(gui.get("MaxPower_var"))->setText(labelMaxPowerText(reactor));
 					}
 				}
 				else if (event.key.code == sf::Mouse::Right) {
 					if (map.getBounds().contains(window.mapPixelToCoords(sf::Mouse::getPosition(window)))) {
 						std::dynamic_pointer_cast<tgui::TextBox>(gui.get("TextBox1"))->setText(
 							reactor.sellPart(getTypeJson(selectedPart), map.clickedCoordinates(sf::Mouse::getPosition(window)), partMap));
+						std::dynamic_pointer_cast<tgui::Label>(gui.get("MaxPower_var"))->setText(labelMaxPowerText(reactor));
 					}
+				}
+			}
+			else if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
+				if (map.getBounds().contains(window.mapPixelToCoords(sf::Mouse::getPosition(window)))) {	
+					std::dynamic_pointer_cast<tgui::TextBox>(gui.get("TextBox1"))->setText(
+						reactor.buyPart(getTypeJson(selectedPart), map.clickedCoordinates(sf::Mouse::getPosition(window)), partMap));
+					std::dynamic_pointer_cast<tgui::Label>(gui.get("MaxPower_var"))->setText(labelMaxPowerText(reactor));
+				}
+			}
+			else if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Right)) {
+				if (map.getBounds().contains(window.mapPixelToCoords(sf::Mouse::getPosition(window)))) {	
+					std::dynamic_pointer_cast<tgui::TextBox>(gui.get("TextBox1"))->setText(
+						reactor.sellPart(getTypeJson(selectedPart), map.clickedCoordinates(sf::Mouse::getPosition(window)), partMap));
+					std::dynamic_pointer_cast<tgui::Label>(gui.get("MaxPower_var"))->setText(labelMaxPowerText(reactor));
 				}
 			}
 			gui.handleEvent(event);
@@ -95,7 +106,8 @@ int Game::run()
 		std::string powerVar = streamObj.str();
 		std::dynamic_pointer_cast<tgui::Label>(gui.get("Money_var"))->setText(moneyVar);
 		std::dynamic_pointer_cast<tgui::Label>(gui.get("Power_var"))->setText(powerVar);
-	
+		
+
 		window.draw(map);
 		window.draw(partMap);
 		window.display();

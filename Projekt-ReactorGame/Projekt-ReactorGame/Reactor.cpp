@@ -32,6 +32,11 @@ std::string Reactor::buyPart(nlohmann::json j, sf::Vector2i location, TileMap& p
 				money -= getFullPrice(j);
 				tiles[location.y][location.x].createPart(j);
 				partMap.change(location, sf::Vector2i{j["textureX"], j["textureY"]});
+
+				if(j["type"] == Types::Battery) {
+					recalculateMaxPower();
+				}
+				
 				return (j["model"].get<std::string>() += " built!");
 			}
 			else return "Not enough money";
@@ -49,6 +54,11 @@ std::string Reactor::sellPart(nlohmann::json j, sf::Vector2i location, TileMap& 
 			money += getFullPrice(j);
 			tiles[location.y][location.x].deletePart();
 			partMap.change(location, sf::Vector2i{ 0, 0 });
+
+			if (j["type"] == Types::Battery) {
+				recalculateMaxPower();
+			}
+			
 			return "Part sold";
 		}
 		else return "There is nothing here!";

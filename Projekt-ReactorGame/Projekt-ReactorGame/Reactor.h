@@ -10,6 +10,7 @@ class Reactor
 {
 	//game data
 	double power = 0;
+	double maxPower = 100;
 	double money = 0;
 
 	
@@ -57,6 +58,7 @@ public:
 			}
 			power++;
 		}
+		if (power > maxPower) { power = maxPower; }
 	}
 
 	std::string buyPart(nlohmann::json j, sf::Vector2i location, TileMap& partMap);
@@ -91,9 +93,25 @@ public:
 		return tiles;
 	}
 
+	void recalculateMaxPower() {
+		maxPower = 100;
+		for (auto it : tiles) {
+			for (auto jt : it) {
+				std::shared_ptr<Part> part = jt.getPart();
+				if (part) {
+					if (part->getType() == Types::Battery) {
+						maxPower += std::static_pointer_cast<Battery>(part)->getCapacity();
+					}
+				}
+			}
+		}
+	}
+
+	
 	float getFullPrice(nlohmann::json j) {
 		//add upgrades handle here
 		return j["basePrice"].get<float>();
 	}
+	float getMaxPower() { return maxPower; }
 };
 

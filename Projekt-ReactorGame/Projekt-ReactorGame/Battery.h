@@ -10,6 +10,9 @@ public:
 	Battery(nlohmann::json j):Part(j) {
 		baseMaxHeat = j["baseMaxHeat"];
 		capacity = j["baseMaxCapacity"];
-	};
+	}
+	double getCapacity() {
+		return capacity;
+	}
 };
 
