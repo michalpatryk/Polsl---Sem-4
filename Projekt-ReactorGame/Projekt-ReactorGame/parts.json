@@ -43,6 +43,17 @@
             "textureX": 4,
             "textureY": 0,
             "type": 2
+        },
+        {
+            "baseHeatConversion": 10.0,
+            "baseMaxHeat": 100.0,
+            "basePrice": 10.0,
+            "costMult": 1.8,
+            "description": "Generates power from adjected heat sources",
+            "model": "Basic generator",
+            "textureX": 5,
+            "textureY": 0,
+            "type": 5
         }
     ]
 }

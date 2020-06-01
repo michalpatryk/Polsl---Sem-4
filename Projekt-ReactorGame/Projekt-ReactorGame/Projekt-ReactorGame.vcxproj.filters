@@ -57,6 +57,9 @@
     <ClCompile Include="HeatSource.cpp">
       <Filter>Source Files\Parts</Filter>
     </ClCompile>
+    <ClCompile Include="Generator.cpp">
+      <Filter>Source Files\Parts</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="debugFunctions.h">
@@ -96,6 +99,9 @@
       <Filter>Header Files\Parts</Filter>
     </ClInclude>
     <ClInclude Include="HeatSource.h">
+      <Filter>Header Files\Parts</Filter>
+    </ClInclude>
+    <ClInclude Include="Generator.h">
       <Filter>Header Files\Parts</Filter>
     </ClInclude>
   </ItemGroup>

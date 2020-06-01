@@ -200,27 +200,6 @@ Picture."Wind turbine" {
     }
 }
 
-Picture."Basic Battery" {
-    Position = (10, 210);
-    Size = (30, 30);
-
-    Renderer {
-        texture = "../resources/DefaultPicture.png";
-        transparenttexture = false;
-    }
-}
-
-Picture."Home office" {
-    Position = (10, 250);
-    Size = (30, 30);
-
-    Renderer {
-        texture = "../resources/DefaultPicture.png";
-        transparenttexture = false;
-    }
-}
-
-
 Picture."Solar cell" {
     Position = (50, 170);
     Size = (30, 30);
@@ -230,6 +209,38 @@ Picture."Solar cell" {
         transparenttexture = false;
     }
 }
+
+Picture."Basic generator" {
+    Position = (10, 210);
+    Size = (30, 30);
+
+    Renderer {
+        texture = "../resources/DefaultPicture.png";
+        transparenttexture = false;
+    }
+}
+
+Picture."Basic Battery" {
+    Position = (10, 250);
+    Size = (30, 30);
+
+    Renderer {
+        texture = "../resources/DefaultPicture.png";
+        transparenttexture = false;
+    }
+}
+
+Picture."Home office" {
+    Position = (10, 290);
+    Size = (30, 30);
+
+    Renderer {
+        texture = "../resources/DefaultPicture.png";
+        transparenttexture = false;
+    }
+}
+
+
 
 Label.Power {
     AutoSize = true;
