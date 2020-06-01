@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <nlohmann/json.hpp>
+#include "PartHeat.h"
 enum class Types {
 	Battery,
 	Seller,
@@ -15,6 +16,7 @@ enum class Types {
 class Part
 {
 protected:
+	std::shared_ptr<PartHeat> partHeat;
 	Types type;
 	std::string model;
 	std::string description;
@@ -32,13 +34,18 @@ public:
 		costMult = j["costMult"].get<double>();
 		if(j.find("baseMaxHeat") != j.end()) {
 			heatAffected = true;
+			partHeat = std::make_shared<HeatEnabled>();
 		}
-		else heatAffected = false;
+		else {
+			heatAffected = false;
+			partHeat = std::make_shared<HeatDisabled>();
+		}
 	}
 	bool isHeatAffected() {
 		return heatAffected;
 	}
 	Types getType() { return type; }
 	double getBasePrice() { return basePrice; }
+	std::shared_ptr<PartHeat> getPartHeatHandle() { return partHeat; }
 };
 

@@ -1,6 +1,5 @@
 #pragma once
 #include "Part.h"
-#include "PartHeat.h"
 class Battery :
 	public Part
 {

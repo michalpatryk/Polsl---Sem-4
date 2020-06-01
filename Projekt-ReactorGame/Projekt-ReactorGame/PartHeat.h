@@ -1,7 +1,14 @@
 #pragma once
 class PartHeat
 {
-protected:
+public:
+	virtual double getHeat() = 0;
+	virtual void heatUp(double heat) = 0;
+	virtual void coolDown(double heat) = 0;
+};
+
+class HeatEnabled :public PartHeat
+{
 	double heat = 0;
 public:
 	double getHeat() {
@@ -15,3 +22,10 @@ public:
 	}
 };
 
+class HeatDisabled :public PartHeat
+{
+public:
+	double getHeat() {	return 0;	}
+	void heatUp(double heat) {}
+	void coolDown(double heat) {}
+};

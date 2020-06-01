@@ -57,7 +57,7 @@ public:
 			power -= sellingPower;
 			money += sellingPower;
 
-			//gain power by generators
+			//gain power by generators. Power sources block merging these nested loops
 			std::vector<Tile> heatGeneratorTiles;
 			for (auto& it : tiles) {
 				for (auto jt : it) {
@@ -76,23 +76,26 @@ public:
 			for (auto it : heatGeneratorTiles) {
 				std::vector<Tile> tilesToHeatUp;
 				sf::Vector2i loc = it.getLocation();
-				std::cout << std::endl;
-				std::cout << loc.x - 1 << "\t" << loc.x + 1 << std::endl;
-				std::cout << loc.y - 1 << "\t" << loc.y + 1 << std::endl << std::endl;
-
-				if ((loc.x - 1) >= 0)	tilesToHeatUp.push_back(tiles[loc.y][loc.x - 1]);
-				if ((loc.x + 1) <= static_cast<int>(tiles[loc.y].size()))	tilesToHeatUp.push_back(tiles[loc.y][loc.x + 1]);
-				if ((loc.y - 1) >= 0)	tilesToHeatUp.push_back(tiles[loc.y - 1][loc.x]);
-				if ((loc.y + 1) <= static_cast<int>(tiles.size()))	tilesToHeatUp.push_back(tiles[loc.y + 1][loc.x]);
+				if ((loc.x - 1) >= 0 
+					&& tiles[loc.y][loc.x - 1].getPart() != nullptr)	tilesToHeatUp.push_back(tiles[loc.y][loc.x - 1]);
+				if ((loc.x + 1) <= static_cast<int>(tiles[loc.y].size()) 
+					&& tiles[loc.y][loc.x + 1].getPart() != nullptr)	tilesToHeatUp.push_back(tiles[loc.y][loc.x + 1]);
+				if ((loc.y - 1) >= 0
+					&& tiles[loc.y - 1][loc.x].getPart() != nullptr)	tilesToHeatUp.push_back(tiles[loc.y - 1][loc.x]);
+				if ((loc.y + 1) <= static_cast<int>(tiles.size())
+					&& tiles[loc.y + 1][loc.x].getPart() != nullptr)	tilesToHeatUp.push_back(tiles[loc.y + 1][loc.x]);
 
 				for(auto jt:tilesToHeatUp) {
-					//check if tile is heat affected
+					//check if tile is heat affected. If yes, increase the heat of this part(heatUp) by base heat generation of the given
+					//heat generator
 					if(jt.getPart()->isHeatAffected()) {
-						//jt.getPart()->getHeat();
+						jt.getPart()->getPartHeatHandle()->heatUp(
+							std::static_pointer_cast<HeatSource>(it.getPart())->getBaseHeatGeneration()/tilesToHeatUp.size());
 					}
 				}
-				
 			}
+			//all parts are now heated up. Now is the time to use the generators and dissipate the heat
+			//!tommorow me: you can explode parts in the same time here if their heat > getMaxHeatHandle
 			for(unsigned int it = 0; it < tiles.size(); it++) {
 				for(unsigned int jt = 0; jt < tiles[i].size(); jt++) {
 					

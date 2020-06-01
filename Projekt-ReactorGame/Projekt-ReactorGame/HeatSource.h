@@ -13,5 +13,8 @@ public:
 		baseDurability = j["baseDurability"];
 		durability = baseDurability;	//add upgrade handle in the future
 	}
+	double getBaseHeatGeneration(){
+		return baseHeatGeneration;
+	}
 };
 
