@@ -81,9 +81,14 @@ public:
 				std::cout << loc.y - 1 << "\t" << loc.y + 1 << std::endl << std::endl;
 
 				if ((loc.x - 1) >= 0)	tilesToHeatUp.push_back(tiles[loc.y][loc.x - 1]);
-				if ((loc.x + 1) <= static_cast<int>(tiles[loc.x].size()))	tilesToHeatUp.push_back(tiles[loc.y][loc.x + 1]);
+				if ((loc.x + 1) <= static_cast<int>(tiles[loc.y].size()))	tilesToHeatUp.push_back(tiles[loc.y][loc.x + 1]);
 				if ((loc.y - 1) >= 0)	tilesToHeatUp.push_back(tiles[loc.y - 1][loc.x]);
 				if ((loc.y + 1) <= static_cast<int>(tiles.size()))	tilesToHeatUp.push_back(tiles[loc.y + 1][loc.x]);
+
+				for(auto jt:tilesToHeatUp) {
+					//check if tile is heat
+					//jt.
+				}
 				
 			}
 			for(unsigned int it = 0; it < tiles.size(); it++) {

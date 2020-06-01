@@ -35,6 +35,9 @@ public:
 		}
 		else heatAffected = false;
 	}
+	bool isHeatAffected() {
+		return heatAffected;
+	}
 	Types getType() { return type; }
 	double getBasePrice() { return basePrice; }
 };
