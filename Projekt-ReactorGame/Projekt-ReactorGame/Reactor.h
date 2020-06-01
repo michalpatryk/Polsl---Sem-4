@@ -86,8 +86,10 @@ public:
 				if ((loc.y + 1) <= static_cast<int>(tiles.size()))	tilesToHeatUp.push_back(tiles[loc.y + 1][loc.x]);
 
 				for(auto jt:tilesToHeatUp) {
-					//check if tile is heat
-					//jt.
+					//check if tile is heat affected
+					if(jt.getPart()->isHeatAffected()) {
+						//jt.getPart()->getHeat();
+					}
 				}
 				
 			}

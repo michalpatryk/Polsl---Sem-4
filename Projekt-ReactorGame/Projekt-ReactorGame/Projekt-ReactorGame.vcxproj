@@ -137,6 +137,7 @@
     <ClCompile Include="HeatSource.cpp" />
     <ClCompile Include="JsonManager.cpp" />
     <ClCompile Include="Part.cpp" />
+    <ClCompile Include="PartHeat.cpp" />
     <ClCompile Include="PowerSource.cpp" />
     <ClCompile Include="Reactor.cpp" />
     <ClCompile Include="Seller.cpp" />
@@ -154,6 +155,7 @@
     <ClInclude Include="HeatSource.h" />
     <ClInclude Include="JsonManager.h" />
     <ClInclude Include="Part.h" />
+    <ClInclude Include="PartHeat.h" />
     <ClInclude Include="PowerSource.h" />
     <ClInclude Include="Reactor.h" />
     <ClInclude Include="Seller.h" />

@@ -1,5 +1,6 @@
 #pragma once
 #include "Part.h"
+#include "PartHeat.h"
 class Battery :
 	public Part
 {
@@ -14,6 +15,15 @@ public:
 	}
 	double getCapacity() {
 		return capacity;
+	}
+	double getHeat() {
+		return heat;
+	}
+	void heatUp(double heat) {
+		this->heat += heat;
+	}
+	void coolDown(double heat) {
+		this->heat -= heat;
 	}
 };
 

@@ -60,6 +60,9 @@
     <ClCompile Include="Generator.cpp">
       <Filter>Source Files\Parts</Filter>
     </ClCompile>
+    <ClCompile Include="PartHeat.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="debugFunctions.h">
@@ -103,6 +106,9 @@
     </ClInclude>
     <ClInclude Include="Generator.h">
       <Filter>Header Files\Parts</Filter>
+    </ClInclude>
+    <ClInclude Include="PartHeat.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
