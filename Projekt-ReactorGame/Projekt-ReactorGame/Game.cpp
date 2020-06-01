@@ -68,6 +68,12 @@ int Game::run()
 							reactor.buyPart(getTypeJson(selectedPart), map.clickedCoordinates(sf::Mouse::getPosition(window)), partMap));
 					}
 				}
+				else if (event.key.code == sf::Mouse::Right) {
+					if (map.getBounds().contains(window.mapPixelToCoords(sf::Mouse::getPosition(window)))) {
+						std::dynamic_pointer_cast<tgui::TextBox>(gui.get("TextBox1"))->setText(
+							reactor.sellPart(getTypeJson(selectedPart), map.clickedCoordinates(sf::Mouse::getPosition(window)), partMap));
+					}
+				}
 			}
 			gui.handleEvent(event);
 		}

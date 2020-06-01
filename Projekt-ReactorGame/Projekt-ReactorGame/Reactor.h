@@ -37,16 +37,20 @@ public:
 	void checkTick() {
 		int ticks = clock.getTick();
 		clock.resetTick();
-		//sell power by sellers
+		
 
-		//gain power by generators
+		
 		for (int i = 0; i < ticks; i++) {
+			//sell power by sellers
+
+
+			//gain power by generators
 			for (auto it : tiles) {
 				for (auto jt : it) {
 					std::shared_ptr<Part> part = jt.getPart();
 					if (part) {
 						if (part->getType() == Types::PowerSource) {
-							money += std::static_pointer_cast<PowerSource>(part)->getBasePowerGeneration();
+							power += std::static_pointer_cast<PowerSource>(part)->getBasePowerGeneration();
 						}
 					}
 				}
@@ -55,7 +59,8 @@ public:
 		}
 	}
 
-	std::string buyPart(nlohmann::json j, sf::Vector2i location, TileMap& partMap);;
+	std::string buyPart(nlohmann::json j, sf::Vector2i location, TileMap& partMap);
+	std::string sellPart(nlohmann::json j, sf::Vector2i location, TileMap& partMap);
 
 	//float getPartPrice(std::string type);
 	nlohmann::json getPostUpgradePart(nlohmann::json j) {

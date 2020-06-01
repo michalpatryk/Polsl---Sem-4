@@ -43,6 +43,19 @@ std::string Reactor::buyPart(nlohmann::json j, sf::Vector2i location, TileMap& p
 	return ".";
 }
 
+std::string Reactor::sellPart(nlohmann::json j, sf::Vector2i location, TileMap& partMap) {
+	if (tiles[location.y][location.x].getTileType() == TileType::buildable) {
+		if (tiles[location.y][location.x].getPart() != nullptr) {
+			money += getFullPrice(j);
+			tiles[location.y][location.x].deletePart();
+			partMap.change(location, sf::Vector2i{ 0, 0 });
+			return "Part sold";
+		}
+		else return "There is nothing here!";
+	}
+	else return "You can't even build there!";
+}
+
 //
 //bool Reactor::buyPart(std::string type) {
 //	if (money > getPartPrice(type)) return true;

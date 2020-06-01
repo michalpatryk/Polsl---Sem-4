@@ -30,7 +30,9 @@ public:
 		if(j["type"] == Types::PowerSource) {
 			part = std::make_shared<PowerSource>(j);
 		}
-		else if (j["type"] == Types::Battery){ part = std::make_shared<Battery>(j); }
+		else if (j["type"] == Types::Battery) {
+			part = std::make_shared<Battery>(j);
+		}
 		//part = std::make_shared<PowerSource>(j);
 		//part = std::make_shared<Part>(j);
 	}
