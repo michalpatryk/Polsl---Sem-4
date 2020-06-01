@@ -2,10 +2,14 @@
 #include "Part.h"
 class Battery :public Part
 {
-	double capacity;
-	double heat;
+	double heat = 0;
 	double baseMaxHeat;
+	double capacity;
+
 public:
-	Battery();
+	Battery(nlohmann::json j):Part(j) {
+		baseMaxHeat = j["baseMaxHeat"];
+		capacity = j["baseMaxCapacity"];
+	};
 };
 

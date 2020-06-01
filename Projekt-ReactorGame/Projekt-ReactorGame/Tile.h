@@ -1,6 +1,8 @@
 #pragma once
 #include "Coordinates.h"
 #include  "Part.h"
+#include "PowerSource.h"
+#include "Battery.h"
 #include <iostream>
 #include <string>
 #include <SFML/System/Vector2.hpp>
@@ -25,13 +27,18 @@ public:
 		//part = nullptr;
 	}
 	void createPart(nlohmann::json j) {
-		part = std::make_shared<Part>(j);
+		if(j["type"] == Types::PowerSource) {
+			part = std::make_shared<PowerSource>(j);
+		}
+		else if (j["type"] == Types::Battery){ part = std::make_shared<Battery>(j); }
+		//part = std::make_shared<PowerSource>(j);
+		//part = std::make_shared<Part>(j);
 	}
 	void deletePart(){
 		part = nullptr;
 	}
 	std::shared_ptr<Part> getPart() {
-		std::cout << part.use_count();;
+		//std::cout << part.use_count();;
 		return part;
 	}
 	TileType getTileType() {

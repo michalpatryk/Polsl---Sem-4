@@ -41,37 +41,33 @@ public:
 
 		//gain power by generators
 		for (int i = 0; i < ticks; i++) {
+			for (auto it : tiles) {
+				for (auto jt : it) {
+					std::shared_ptr<Part> part = jt.getPart();
+					if (part) {
+						if (part->getType() == Types::PowerSource) {
+							money += std::static_pointer_cast<PowerSource>(part)->getBasePowerGeneration();
+						}
+					}
+				}
+			}
 			power++;
 		}
 	}
 
-	std::string buyPart(nlohmann::json j, sf::Vector2i location, TileMap &partMap) {
-		std::cout << location.x << " " << location.y << std::endl;
-		std::cout << j << std::endl;
-		if(tiles[location.y][location.x].getTileType() == TileType::buildable) {
-			if(tiles[location.y][location.x].getPart() == nullptr) {
-				if (money > getFullPrice(j)) {
-					money -= getFullPrice(j);
-					tiles[location.y][location.x].createPart(j);
-					partMap.change(location, sf::Vector2i{ j["textureX"], j["textureY"] });
-					return (j["model"].get<std::string>() += " built!");
-				}
-				else return "Not enough money";
-			}
-			else return "There is already a part here!";
-		}
-		else return "You can't build on this tile!";
-		
-		return ".";
-	};
+	std::string buyPart(nlohmann::json j, sf::Vector2i location, TileMap& partMap);;
 
 	//float getPartPrice(std::string type);
 	nlohmann::json getPostUpgradePart(nlohmann::json j) {
 		return j;
 	}
 	void sellPower() {
+		if(money < 11) {
+			money++;
+		}
 		money += power;
 		power = 0;
+		
 	}
 
 	//used to start a clock thread

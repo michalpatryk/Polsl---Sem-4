@@ -35,6 +35,6 @@ public:
 		}
 		else heatAffected = false;
 	}
-	virtual void draw(){};
+	Types getType() { return type; }
 };
 

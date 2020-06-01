@@ -51,6 +51,9 @@
     <ClCompile Include="JsonManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PowerSource.cpp">
+      <Filter>Source Files\Parts</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="debugFunctions.h">
@@ -85,6 +88,9 @@
     </ClInclude>
     <ClInclude Include="JsonManager.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PowerSource.h">
+      <Filter>Header Files\Parts</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

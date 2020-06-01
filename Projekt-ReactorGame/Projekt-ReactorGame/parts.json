@@ -13,7 +13,7 @@
         },
         {
             "baseMaxHeat": 10.0,
-            "basePowerGen": 1.0,
+            "basePowerGeneration": 1.0,
             "basePrice": 10.0,
             "costMult": 1.8,
             "description": "Generates power with the power of the wind",

@@ -24,6 +24,25 @@ Reactor::Reactor(std::vector<int> tileMap, int width, int height): tileMap(tileM
 		}
 	}
 }
+
+std::string Reactor::buyPart(nlohmann::json j, sf::Vector2i location, TileMap& partMap) {
+	if (tiles[location.y][location.x].getTileType() == TileType::buildable) {
+		if (tiles[location.y][location.x].getPart() == nullptr) {
+			if (money >= getFullPrice(j)) {
+				money -= getFullPrice(j);
+				tiles[location.y][location.x].createPart(j);
+				partMap.change(location, sf::Vector2i{j["textureX"], j["textureY"]});
+				return (j["model"].get<std::string>() += " built!");
+			}
+			else return "Not enough money";
+		}
+		else return "There is already a part here!";
+	}
+	else return "You can't build on this tile!";
+
+	return ".";
+}
+
 //
 //bool Reactor::buyPart(std::string type) {
 //	if (money > getPartPrice(type)) return true;

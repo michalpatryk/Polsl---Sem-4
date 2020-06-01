@@ -195,7 +195,7 @@ Picture."Wind turbine" {
     Size = (30, 30);
 
     Renderer {
-        texture = "../resources/DefaultPicture.png";
+        texture = "../resources/Wind turbine.png";
         transparenttexture = false;
     }
 }

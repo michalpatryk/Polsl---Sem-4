@@ -135,6 +135,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="JsonManager.cpp" />
     <ClCompile Include="Part.cpp" />
+    <ClCompile Include="PowerSource.cpp" />
     <ClCompile Include="Reactor.cpp" />
     <ClCompile Include="Seller.cpp" />
     <ClCompile Include="Source.cpp" />
@@ -149,6 +150,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="JsonManager.h" />
     <ClInclude Include="Part.h" />
+    <ClInclude Include="PowerSource.h" />
     <ClInclude Include="Reactor.h" />
     <ClInclude Include="Seller.h" />
     <ClInclude Include="Tile.h" />
