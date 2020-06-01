@@ -30,7 +30,7 @@ public:
 		description = j["description"].get<std::string>();
 		basePrice = j["basePrice"].get<double>();
 		costMult = j["costMult"].get<double>();
-		if(j["baseMaxHeat"].get<float>()) {
+		if(j.find("baseMaxHeat") != j.end()) {
 			heatAffected = true;
 		}
 		else heatAffected = false;

@@ -133,6 +133,7 @@
     <ClCompile Include="Battery.cpp" />
     <ClCompile Include="Clock.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="HeatSource.cpp" />
     <ClCompile Include="JsonManager.cpp" />
     <ClCompile Include="Part.cpp" />
     <ClCompile Include="PowerSource.cpp" />
@@ -148,6 +149,7 @@
     <ClInclude Include="Coordinates.h" />
     <ClInclude Include="debugFunctions.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="HeatSource.h" />
     <ClInclude Include="JsonManager.h" />
     <ClInclude Include="Part.h" />
     <ClInclude Include="PowerSource.h" />

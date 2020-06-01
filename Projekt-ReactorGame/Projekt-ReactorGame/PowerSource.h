@@ -1,7 +1,8 @@
 #pragma once
 #include "Part.h"
 
-class PowerSource : public Part
+class PowerSource :
+	public Part
 {
 	float heat = 0;
 	float baseMaxHeat;

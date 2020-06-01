@@ -22,15 +22,20 @@ void partDesign() {
 	nlohmann::json j2;
 
 	
-	j2["type"] = Types::Seller;
-	j2["model"] = "Home office";
-	j2["description"] = "Sells your power";
-	j2["basePrice"] = 160.0;
+	j2["type"] = Types::HeatSource;
+	j2["model"] = "Solar panel";
+	j2["description"] = "Generates heat with the help of the sun";
+	j2["basePrice"] = 10.0;
 	j2["costMult"] = 1.8;
 	
 	//j2["baseMaxCapacity"] = 100.0;
-	j2["baseMaxSell"] = 5.0;
-	j2["baseMaxHeat"] = 10.0;
+	//j2["baseMaxSell"] = 5.0;
+	//j2["baseMaxHeat"] = 10.0;
+	j2["baseHeatGen"] = 5.0;
+	j2["baseDurability"] = 100.0;
+
+	j2["textureX"] = 4;
+	j2["textureY"] = 0;
 	//j2["basePowerGen"] = 1.0;
 
 	

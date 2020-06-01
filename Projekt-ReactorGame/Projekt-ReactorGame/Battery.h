@@ -1,6 +1,7 @@
 #pragma once
 #include "Part.h"
-class Battery :public Part
+class Battery :
+	public Part
 {
 	double heat = 0;
 	double baseMaxHeat;

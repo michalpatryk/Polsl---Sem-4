@@ -8,6 +8,8 @@
 #include <string>
 #include <SFML/System/Vector2.hpp>
 
+#include "HeatSource.h"
+
 enum class TileType{buildable, unbuildable};
 
 class Tile
@@ -37,6 +39,9 @@ public:
 			break;
 		case Types::Seller:
 			part = std::make_shared<Seller>(j);
+			break;
+		case Types::HeatSource:
+			part = std::make_shared <HeatSource>(j);
 			break;
 		default:
 			throw std::runtime_error("Can't create part: Type not specified");

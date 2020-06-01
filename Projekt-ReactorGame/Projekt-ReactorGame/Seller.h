@@ -1,6 +1,7 @@
 #pragma once
 #include "Part.h"
-class Seller :public Part
+class Seller :
+	public Part
 {
 	double baseSell;
 	double heat;

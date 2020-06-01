@@ -220,6 +220,17 @@ Picture."Home office" {
     }
 }
 
+
+Picture."Solar cell" {
+    Position = (50, 170);
+    Size = (30, 30);
+
+    Renderer {
+        texture = "../resources/DefaultPicture.png";
+        transparenttexture = false;
+    }
+}
+
 Label.Power {
     AutoSize = true;
     Position = (0, 40);

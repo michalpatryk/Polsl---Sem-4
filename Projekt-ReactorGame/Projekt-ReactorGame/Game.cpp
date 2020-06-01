@@ -35,6 +35,8 @@ int Game::run()
 			"clicked", [&]() { selectedPart = "Basic Battery"; txtBoxChanged = true; });
 		std::dynamic_pointer_cast<tgui::ClickableWidget>(gui.get("Home office"))->connect(
 			"clicked", [&]() { selectedPart = "Home office"; txtBoxChanged = true; });
+		std::dynamic_pointer_cast<tgui::ClickableWidget>(gui.get("Solar cell"))->connect(
+			"clicked", [&]() { selectedPart = "Solar cell"; txtBoxChanged = true; });
 	}
 	catch (const tgui::Exception& e)
 	{
