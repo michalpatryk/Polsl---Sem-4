@@ -65,7 +65,7 @@ public:
 				quad[1].position = sf::Vector2f((i + 1) * tileSize.x + offsetX, j * tileSize.y + offsetY);
 				quad[2].position = sf::Vector2f((i + 1) * tileSize.x + offsetX, (j + 1) * tileSize.y + offsetY);
 				quad[3].position = sf::Vector2f(i * tileSize.x + offsetX, (j + 1) * tileSize.y + offsetY);
-
+				
 				// define its 4 texture coordinates
 				quad[0].texCoords = sf::Vector2f(tu * tileSize.x, tv * tileSize.y);
 				quad[1].texCoords = sf::Vector2f((tu + 1) * tileSize.x, tv * tileSize.y);

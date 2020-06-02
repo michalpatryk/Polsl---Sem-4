@@ -11,5 +11,6 @@ public:
 		baseHeatConversion = j["baseHeatConversion"];
 		baseMaxHeat = j["baseMaxHeat"];
 	}
+	double getBaseHeatConversion() { return baseHeatConversion; }
 };
 

@@ -37,7 +37,8 @@ public:
 	/**	Checks if clock have any ticks, if yes it calculates all elements.
 	 *
 	 */
-	void checkTick() {
+	
+	void checkTick(TileMap& partMap) {
 		const int ticks = clock.getTick();
 		clock.resetTick();
 
@@ -94,13 +95,34 @@ public:
 					}
 				}
 			}
+			
 			//all parts are now heated up. Now is the time to use the generators and dissipate the heat
-			//!tommorow me: you can explode parts in the same time here if their heat > getMaxHeatHandle
-			for(unsigned int it = 0; it < tiles.size(); it++) {
-				for(unsigned int jt = 0; jt < tiles[i].size(); jt++) {
-					
+			for(auto it : tiles) {
+				for(auto jt : it) {
+					std::shared_ptr<Part> part = jt.getPart();
+					if(part) {
+						if (part->getType() == Types::Generator) {
+							double heat = part->getPartHeatHandle()->getHeat();
+							double heatConversionPower = std::static_pointer_cast<Generator>(part)->getBaseHeatConversion();
+							if(heat-heatConversionPower < 0) {
+								power += heat;
+								part->getPartHeatHandle()->coolDown(heat);
+							}
+							else {
+								power += heatConversionPower;
+								part->getPartHeatHandle()->coolDown(heatConversionPower);
+							}
+						}
+						if(part->isHeatAffected()) {
+							if(part->getPartHeatHandle()->getHeat() > part->getPartHeatHandle()->getBaseMaxHeat()) {
+								tiles[jt.getLocation().y][jt.getLocation().x].deletePart();
+								partMap.change(jt.getLocation(), sf::Vector2i{ 0, 0 });
+							}
+						}
+					}
 				}
 			}
+			
 			
 			power++;
 		}

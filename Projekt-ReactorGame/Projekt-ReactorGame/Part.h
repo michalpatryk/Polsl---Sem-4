@@ -35,6 +35,7 @@ public:
 		if(j.find("baseMaxHeat") != j.end()) {
 			heatAffected = true;
 			partHeat = std::make_shared<HeatEnabled>();
+			partHeat->setBaseMaxHeat(j["baseMaxHeat"]);
 		}
 		else {
 			heatAffected = false;

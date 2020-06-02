@@ -50,7 +50,7 @@ int Game::run()
 
 	while (window.isOpen())
 	{
-		reactor.checkTick();
+		reactor.checkTick(partMap);
 
 		sf::Event event{};
 		while (window.pollEvent(event))
@@ -92,14 +92,14 @@ int Game::run()
 			}
 			gui.handleEvent(event);
 		}
-		//optimize me
+
 		if (txtBoxChanged == true) {
 			std::dynamic_pointer_cast<tgui::TextBox>(gui.get("TextBox1"))->setText(textBoxText());
 			txtBoxChanged = false;
 		}
-		//std::cout << getTypeJson(selectedPart);
+
 		window.clear(sf::Color::White);
-		//reactor.buyPart(partsJson[selectedPart]);
+
 		gui.draw();
 		std::ostringstream streamObj;
 		streamObj << std::scientific << reactor.getMoney();
