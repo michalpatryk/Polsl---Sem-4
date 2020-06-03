@@ -12,7 +12,7 @@ int main()
 	//partDesign();
 	//partLoad();
 	//getFullPath("tileset.png");
-	const sf::VideoMode v_mode(1024, 800, 32);
+	const sf::VideoMode v_mode(800, 600, 32);
 	Game game(v_mode);
 	return(game.run());
 }

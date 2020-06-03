@@ -1,26 +1,4 @@
 Renderer.1 {
-    backgroundcolor = #F5F5F5;
-    backgroundcolordisabled = #E6E6E6;
-    backgroundcolordown = #EBEBEB;
-    backgroundcolorhover = white;
-    bordercolor = #3C3C3C;
-    bordercolordisabled = #7D7D7D;
-    bordercolordown = black;
-    bordercolorfocused = #1E1EB4;
-    bordercolorhover = black;
-    borders = (1, 1, 1, 1);
-    textcolor = #3C3C3C;
-    textcolordisabled = #7D7D7D;
-    textcolordown = black;
-    textcolorhover = black;
-    texture = None;
-    texturedisabled = None;
-    texturedown = None;
-    texturefocused = None;
-    texturehover = None;
-}
-
-Renderer.2 {
     backgroundcolor = transparent;
     bordercolor = #3C3C3C;
     borders = (0, 0, 0, 0);
@@ -28,12 +6,7 @@ Renderer.2 {
     texturebackground = None;
 }
 
-Renderer.3 {
-    texture = "../resources/DefaultPicture.png";
-    transparenttexture = false;
-}
-
-Renderer.4 {
+Renderer.2 {
     backgroundcolor = transparent;
     bordercolor = #3C3C3C;
     borders = (0, 0, 0, 0);
@@ -62,8 +35,8 @@ Renderer.4 {
 TextBox.TextBox1 {
     HorizontalScrollbarPolicy = Never;
     MaximumCharacters = 0;
-    Position = (230, 20);
-    Size = (568, 135);
+    Position = (230, 0);
+    Size = (788, 155);
     Text = "";
     TextSize = 13;
 
@@ -104,7 +77,28 @@ Button.powerSell {
     Position = (70, 130);
     Text = "Sell all power";
     TextSize = 13;
-    renderer = &1;
+
+    Renderer {
+        backgroundcolor = #F5F5F5;
+        backgroundcolordisabled = #E6E6E6;
+        backgroundcolordown = #EBEBEB;
+        backgroundcolorhover = white;
+        bordercolor = #3C3C3C;
+        bordercolordisabled = #7D7D7D;
+        bordercolordown = black;
+        bordercolorfocused = #1E1EB4;
+        bordercolorhover = black;
+        borders = (1, 1, 1, 1);
+        textcolor = #3C3C3C;
+        textcolordisabled = #7D7D7D;
+        textcolordown = black;
+        textcolorhover = black;
+        texture = None;
+        texturedisabled = None;
+        texturedown = None;
+        texturefocused = None;
+        texturehover = None;
+    }
 }
 
 Label.Money {
@@ -113,7 +107,17 @@ Label.Money {
     Size = (50.2, 18);
     Text = "Money:";
     TextSize = 13;
-    renderer = &4;
+    renderer = &2;
+}
+
+Label.Research {
+    AutoSize = true;
+    Position = (0, 20);
+    ScrollbarPolicy = Never;
+    Size = (68.2, 18);
+    Text = "Research:";
+    TextSize = 13;
+    renderer = &2;
 }
 
 Label.Money_var {
@@ -123,7 +127,17 @@ Label.Money_var {
     Size = (37.2, 18);
     Text = Label;
     TextSize = 13;
-    renderer = &4;
+    renderer = &2;
+}
+
+Label.Research_val {
+    AutoSize = true;
+    Position = (80, 20);
+    ScrollbarPolicy = Never;
+    Size = (37.2, 18);
+    Text = Label;
+    TextSize = 13;
+    renderer = &1;
 }
 
 Label.MaxPower {
@@ -133,7 +147,7 @@ Label.MaxPower {
     Size = (78.2, 18);
     Text = "Max power:";
     TextSize = 13;
-    renderer = &4;
+    renderer = &2;
 }
 
 Label.MaxPower_var {
@@ -143,7 +157,7 @@ Label.MaxPower_var {
     Size = (37.2, 18);
     Text = Label;
     TextSize = 13;
-    renderer = &2;
+    renderer = &1;
 }
 
 ProgressBar.StorageBar {
@@ -173,22 +187,22 @@ Label.Components {
     Size = (85.2, 18);
     Text = Components;
     TextSize = 13;
-    renderer = &4;
+    renderer = &2;
 }
 
 Picture."Wind turbine" {
     Position = (10, 170);
-    Size = (32, 32);
+    Size = (30, 30);
 
     Renderer {
-        texture = "../resources/DefaultPicture.png";
+        texture = "../resources/Wind turbine.png";
         transparenttexture = false;
     }
 }
 
 Picture."Solar cell" {
     Position = (50, 170);
-    Size = (32, 32);
+    Size = (30, 30);
 
     Renderer {
         texture = "../resources/DefaultPicture.png";
@@ -198,7 +212,7 @@ Picture."Solar cell" {
 
 Picture."Basic generator" {
     Position = (10, 210);
-    Size = (32, 32);
+    Size = (30, 30);
 
     Renderer {
         texture = "../resources/DefaultPicture.png";
@@ -208,7 +222,7 @@ Picture."Basic generator" {
 
 Picture."Basic Battery" {
     Position = (10, 250);
-    Size = (32, 32);
+    Size = (30, 30);
 
     Renderer {
         texture = "../resources/DefaultPicture.png";
@@ -218,13 +232,15 @@ Picture."Basic Battery" {
 
 Picture."Home office" {
     Position = (10, 290);
-    Size = (32, 32);
+    Size = (30, 30);
 
     Renderer {
         texture = "../resources/DefaultPicture.png";
         transparenttexture = false;
     }
 }
+
+
 
 Label.Power {
     AutoSize = true;
@@ -233,7 +249,7 @@ Label.Power {
     Size = (48.2, 18);
     Text = "Power:";
     TextSize = 13;
-    renderer = &2;
+    renderer = &1;
 }
 
 Label.Power_var {
@@ -243,95 +259,5 @@ Label.Power_var {
     Size = (37.2, 18);
     Text = Label;
     TextSize = 13;
-    renderer = &2;
-}
-
-Button.UpgradesMenu {
-    Position = (230, 0);
-    Text = Upgrades;
-    TextSize = 13;
     renderer = &1;
-}
-
-Group.Group1 {
-    Position = (225, 20);
-    Size = (575, 580);
-    Visible = false;
-
-    Renderer {
-    }
-
-    Panel.Panel1 {
-        Size = (575, 580);
-
-        Renderer {
-            backgroundcolor = white;
-            bordercolor = black;
-            texturebackground = None;
-        }
-
-        Label.UpgradeClockLabel {
-            AutoSize = true;
-            Position = (50, 20);
-            ScrollbarPolicy = Never;
-            Size = (156.2, 18);
-            Text = "Upgrades clock tick rate";
-            TextSize = 13;
-            renderer = &2;
-        }
-
-        Picture.UpgradeClock {
-            Position = (10, 10);
-            Size = (32, 32);
-            renderer = &3;
-        }
-
-        Picture.UpgradeWindTurbine {
-            Position = (10, 540);
-            Size = (32, 32);
-            renderer = &3;
-        }
-
-        Label.UpgradeWindTurbineLabel {
-            AutoSize = true;
-            Position = (50, 550);
-            ScrollbarPolicy = Never;
-            Size = (255.2, 18);
-            Text = "Doubles wind turbine power generation";
-            TextSize = 13;
-            renderer = &2;
-        }
-
-        Picture.UpgradeSolarCell {
-            Position = (10, 500);
-            Size = (32, 32);
-            renderer = &3;
-        }
-
-        Picture.UpgradeGenerator {
-            Position = (10, 460);
-            Size = (32, 32);
-            renderer = &3;
-        }
-
-        Label.UpgradeSolarCellLabel {
-            AutoSize = true;
-            Position = (50, 510);
-            ScrollbarPolicy = Never;
-            Size = (221.2, 18);
-            Text = "Doubles colar cell heat generation";
-            TextSize = 13;
-            renderer = &2;
-        }
-
-        Label.UpgradeGeneratorLabel {
-            AutoSize = true;
-            Position = (50, 470);
-            ScrollbarPolicy = Never;
-            Size = (196.2, 18);
-            Text = "Doubles generator conversion";
-            TextSize = 13;
-            renderer = &2;
-        }
-    }
 }
