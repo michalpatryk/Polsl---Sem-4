@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <string>
 #include <nlohmann/json.hpp>
 #include "PartHeat.h"
@@ -42,6 +42,7 @@ public:
 			partHeat = std::make_shared<HeatDisabled>();
 		}
 	}
+	///Zwraca informację, czy część powinna być sprawdzana pod względem ciepła
 	bool isHeatAffected() {
 		return heatAffected;
 	}

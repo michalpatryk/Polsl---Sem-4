@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #pragma warning (disable: 4244)
 #include <iostream>
 #include <SFML/Graphics.hpp>
@@ -13,6 +13,8 @@ class TileMap : public sf::Drawable, public sf::Transformable
 	sf::Vector2i location{0,0};
 	sf::VertexArray m_vertices;
 	sf::Texture m_tileset;
+
+	///Maluje obiekt TileMap na ekranie
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const
 	{
 		// apply the transform
@@ -29,7 +31,7 @@ public:
 	sf::FloatRect getBounds() {
 		return m_vertices.getBounds();
 	}
-	//const int* tiles
+	///Ładuje mapę do obiektu
 	bool load(const std::string& tileset, sf::Vector2u tileSize,  std::vector<int> tiles, unsigned int width, unsigned int height, unsigned int offsetX,
 		unsigned int offsetY)
 	{
@@ -75,6 +77,7 @@ public:
 
 		return true;
 	}
+	///Zmienia wygląd mapy w wybranych koordynatach na wybrany typ grafiki
 	void change(sf::Vector2i coordinates, sf::Vector2i type) {
 		sf::Vertex* quad = &m_vertices[(coordinates.x + coordinates.y * tileMapWidth)*4];
 		quad[0].texCoords = sf::Vector2f((type.x) * tileSizeX, (type.y) * tileSizeY);
@@ -83,6 +86,7 @@ public:
 		quad[3].texCoords = sf::Vector2f((type.x) * tileSizeX, (type.y + 1) * tileSizeY);
 	}
 
+	///Zwraca który element mapy został kliknięty
 	sf::Vector2i clickedCoordinates(sf::Vector2i mouseCoord) {
 		mouseCoord -= location;
 		mouseCoord.x = mouseCoord.x / tileSizeX;

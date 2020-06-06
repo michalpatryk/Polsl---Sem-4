@@ -1,5 +1,6 @@
-#pragma once
+﻿#pragma once
 #include "Part.h"
+///Zwiększa maksymalną energię reactora
 class Battery :
 	public Part
 {

@@ -1,10 +1,11 @@
-#pragma once
+﻿#pragma once
 #include <nlohmann/json.hpp>
 #include <fstream>
 
 #include <iomanip>
 #include <iostream>
 #include "Part.h"
+///Klasa służąca do ładowania pliku JSON z wszystkimi częściami.
 class JsonManager
 {
 	nlohmann::json loadedJson;
@@ -16,6 +17,7 @@ public:
 	JsonManager(std::string& filename) {
 		loadJson(filename);
 	}
+
 	nlohmann::json loadJson(std::string& filename) {
 		std::vector<nlohmann::json> alljSon;
 		std::ifstream i(filename);

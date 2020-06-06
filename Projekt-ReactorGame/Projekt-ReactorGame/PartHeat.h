@@ -1,4 +1,5 @@
 #pragma once
+///Klasa stworzona jako wzorzec strategi w celu ograniczenia potrzeby przepisywania tych samych elementów do wielu obiektów
 class PartHeat
 {
 public:

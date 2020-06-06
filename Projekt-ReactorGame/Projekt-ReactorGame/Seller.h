@@ -1,5 +1,6 @@
-#pragma once
+﻿#pragma once
 #include "Part.h"
+///Sprzedaje energię
 class Seller :
 	public Part
 {

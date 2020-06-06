@@ -1,10 +1,14 @@
-#include <string>
+﻿#include <string>
 #include <nlohmann/json.hpp>
 #include <Windows.h>
 #include <iostream>
 #include <fstream>
 #include <iomanip>
 #include "Part.h"
+
+///Plik zawierający pliki służące jedynie w czasie tworzenia gry, nie przez samą grę.
+
+///Funkcja zwracająca pełną ścieżkę w systemie windows. Ułatwia rozstawianie plików w solucji
 void getFullPath(const std::string& str)
 {
 	char filename[100];
@@ -15,6 +19,7 @@ void getFullPath(const std::string& str)
 	return;
 }
 
+///Funkcja służąca do tworzenia nowych części. Wybierając odpowiednią kombinację jesteśmy w stanie stworzyć dowolną część.
 void partDesign() {
 	std::ifstream i("parts.json");
 	nlohmann::json j = nlohmann::json::parse(i);
@@ -48,6 +53,7 @@ void partDesign() {
 	
 }
 
+///Funkcja pozwalająca na wczytanie i wypisanie poszczególnych części
 void partLoad() {
 	std::vector<nlohmann::json> alljSon;
 	std::ifstream i("parts.json");

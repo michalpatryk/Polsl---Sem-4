@@ -1,6 +1,7 @@
-#pragma once
+﻿#pragma once
 #include "Part.h"
 #include <iostream>
+///Generuje ciepło
 class HeatSource :
 	public Part
 {

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "Tile.h"
 #include "Clock.h"
 #include <utility>
@@ -34,39 +34,43 @@ public:
 
 	double getMoney() const { return money; }
 	
-	/**	Checks if clock have any ticks, if yes it calculates all elements.
-	 *
-	 */
+	///Sprawdza, czy zegar ma jakieś nieobliczone takty. Jeżeli tak, oblicza je
 	void checkTick(TileMap& partMap);
 
+	///Kupuje wybraną część na danej lokacji
 	std::string buyPart(nlohmann::json j, sf::Vector2i location, TileMap& partMap);
+	///Sprzdaje część z danej lokacji
 	std::string sellPart(sf::Vector2i location, TileMap& partMap);
 
-	//float getPartPrice(std::string type);
+	///Zwraca ulepszoną część. Klasa przyszłościowa, użyta tylko gdy dodane zostaje ulepszenie zmniejszające koszt części
 	nlohmann::json getPostUpgradePart(nlohmann::json j) {
 		return j;
 	}
 
+	///Sprzedaje całą moc po kliknięciu guziku, lub gdy mamy za mało pieniędzy - daje nam pieniądze
 	void sellPower();
 
-	//used to start a clock thread
+	///Zwraca obiekt zegara w celu jego uruchomienia w innym wątku
 	Clock& getClock() {
 		return std::ref(clock);
 	}
+	
 	//DEBUG ONLY FUNCTION - to know current ticks
 	int getTick() {
 		return clock.getTick();
 	}
 
+	///Służy do manualnego wyłączenia zegara
 	void reactorShutdown() {
 		clock.initializeShutdown();
 	}
 	std::vector<std::vector<Tile>>& getTiles() {
 		return tiles;
 	}
-
+	///Liczy maksymalną moc reaktora
 	void recalculateMaxPower();
 
+	///Zwraca koszt części
 	double getFullPrice(nlohmann::json j) {
 		return j["basePrice"].get<double>();
 	}

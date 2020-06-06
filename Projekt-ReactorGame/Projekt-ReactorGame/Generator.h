@@ -1,5 +1,6 @@
-#pragma once
+﻿#pragma once
 #include "Part.h"
+///Zmienia ciepło w energię
 class Generator :
 	public Part
 {

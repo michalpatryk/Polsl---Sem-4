@@ -1,6 +1,6 @@
-#pragma once
+﻿#pragma once
 #include "Part.h"
-
+///Generuje energię
 class PowerSource :
 	public Part
 {

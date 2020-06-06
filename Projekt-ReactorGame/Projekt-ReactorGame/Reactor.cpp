@@ -175,7 +175,7 @@ std::string Reactor::sellPart(sf::Vector2i location, TileMap& partMap) {
 }
 
 void Reactor::sellPower() {
-	if (money < 11) {
+	if (money < 11 && power < 11) {
 		money++;
 	}
 	money += power;

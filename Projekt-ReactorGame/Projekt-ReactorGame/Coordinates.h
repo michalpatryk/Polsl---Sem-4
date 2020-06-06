@@ -1,5 +1,5 @@
-#pragma once
-//function to delete, sf::Vector2i is just better
+﻿#pragma once
+///Nieużywana struktura - pozostawiona jako przypomnienie, że używanie sf::Vector2i jest lepsze
 struct Coordinates {
 	//top left is 00, bottom right is xx
 	int x;
