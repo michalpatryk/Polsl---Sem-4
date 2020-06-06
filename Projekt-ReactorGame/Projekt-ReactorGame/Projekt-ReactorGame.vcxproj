@@ -144,6 +144,8 @@
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TileMap.cpp" />
+    <ClCompile Include="Upgrade.cpp" />
+    <ClCompile Include="UpgradesManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Battery.h" />
@@ -161,6 +163,8 @@
     <ClInclude Include="Seller.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TileMap.h" />
+    <ClInclude Include="Upgrade.h" />
+    <ClInclude Include="UpgradesManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

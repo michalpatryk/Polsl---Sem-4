@@ -109,29 +109,29 @@ void Game::guiInitialize(tgui::Gui& gui, bool& txtBoxChanged, Reactor& reactor) 
 	std::dynamic_pointer_cast<tgui::Button>(gui.get("powerSell"))->connect("clicked", [&]() { reactor.sellPower(); });
 	std::dynamic_pointer_cast<tgui::ClickableWidget>(gui.get("Wind turbine"))->connect(
 		"clicked", [&]() {
-			selectedPart = "Wind turbine";
-			txtBoxChanged = true;
-		});
+		selectedPart = "Wind turbine";
+		txtBoxChanged = true;
+	});
 	std::dynamic_pointer_cast<tgui::ClickableWidget>(gui.get("Basic Battery"))->connect(
 		"clicked", [&]() {
-			selectedPart = "Basic Battery";
-			txtBoxChanged = true;
-		});
+		selectedPart = "Basic Battery";
+		txtBoxChanged = true;
+	});
 	std::dynamic_pointer_cast<tgui::ClickableWidget>(gui.get("Home office"))->connect(
 		"clicked", [&]() {
-			selectedPart = "Home office";
-			txtBoxChanged = true;
-		});
+		selectedPart = "Home office";
+		txtBoxChanged = true;
+	});
 	std::dynamic_pointer_cast<tgui::ClickableWidget>(gui.get("Solar cell"))->connect(
 		"clicked", [&]() {
-			selectedPart = "Solar cell";
-			txtBoxChanged = true;
-		});
+		selectedPart = "Solar cell";
+		txtBoxChanged = true;
+	});
 	std::dynamic_pointer_cast<tgui::ClickableWidget>(gui.get("Basic generator"))->connect(
 		"clicked", [&]() {
-			selectedPart = "Basic generator";
-			txtBoxChanged = true;
-		});
+		selectedPart = "Basic generator";
+		txtBoxChanged = true;
+	});
 	std::dynamic_pointer_cast<tgui::Button>(gui.get("UpgradesMenu"))->connect("clicked", [&]() {
 		gui.get("Group1")->setVisible(!gui.get("Group1")->isVisible());
 	});

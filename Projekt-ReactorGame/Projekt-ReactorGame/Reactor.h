@@ -5,6 +5,7 @@
 #include <vector>
 #include <nlohmann/json.hpp>
 #include "TileMap.h"
+#include "UpgradesManager.h"
 class Reactor
 {
 	//game data
@@ -16,7 +17,7 @@ class Reactor
 	//map data
 	std::vector<std::vector<Tile>> tiles;
 	std::vector<int> tileMap;
-
+	UpgradesManager upgradesManager;
 
 	//clock
 	std::mutex mtx;

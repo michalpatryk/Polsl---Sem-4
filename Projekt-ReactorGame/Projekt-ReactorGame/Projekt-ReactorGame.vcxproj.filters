@@ -63,6 +63,12 @@
     <ClCompile Include="PartHeat.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Upgrade.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UpgradesManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="debugFunctions.h">
@@ -108,6 +114,12 @@
       <Filter>Header Files\Parts</Filter>
     </ClInclude>
     <ClInclude Include="PartHeat.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Upgrade.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UpgradesManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
