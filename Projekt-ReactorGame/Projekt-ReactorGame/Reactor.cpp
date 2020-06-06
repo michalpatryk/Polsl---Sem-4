@@ -87,7 +87,7 @@ void Reactor::checkTick(TileMap& partMap) {
 				}
 			}
 		}
-
+		bool explosion = false;
 		//all parts are now heated up. Now is the time to use the generators and dissipate the heat
 		for (auto it : tiles) {
 			for (auto jt : it) {
@@ -105,16 +105,18 @@ void Reactor::checkTick(TileMap& partMap) {
 							part->getPartHeatHandle()->coolDown(heatConversionPower);
 						}
 					}
+					//check for overheat
 					if (part->isHeatAffected()) {
 						if (part->getPartHeatHandle()->getHeat() > part->getPartHeatHandle()->getBaseMaxHeat()) {
 							tiles[jt.getLocation().y][jt.getLocation().x].deletePart();
 							partMap.change(jt.getLocation(), sf::Vector2i{0, 0});
+							recalculateMaxPower();
 						}
 					}
 				}
 			}
 		}
-
+		//if (explosion) 
 
 		power++;
 		if (power - sellingPower > 0) {

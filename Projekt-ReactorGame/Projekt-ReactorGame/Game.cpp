@@ -20,21 +20,16 @@ int Game::run()
 
 
 	Reactor reactor{ level, 16, 9 };
-	try
-	{
+	try{
 		guiInitialize(gui, txtBoxChanged, reactor);
 	}
-	catch (const tgui::Exception& e)
-	{
+	catch (const tgui::Exception& e){
 		std::cerr << "TGUI Exception: " << e.what() << std::endl;
 		return EXIT_FAILURE;
 	}
 	//start reactor clock
 	std::thread clockThread(std::ref(reactor.getClock()));
 
-	//gui.get("Group1")->setVisible(false);
-
-	
 	while (window.isOpen())
 	{
 		reactor.checkTick(partMap);
@@ -78,8 +73,7 @@ int Game::run()
 						std::dynamic_pointer_cast<tgui::Label>(gui.get("MaxPower_var"))->setText(labelMaxPowerText(reactor));
 					}
 				}
-			}
-			
+			}			
 			gui.handleEvent(event);
 		}
 
@@ -87,8 +81,6 @@ int Game::run()
 			std::dynamic_pointer_cast<tgui::TextBox>(gui.get("TextBox1"))->setText(textBoxText());
 			txtBoxChanged = false;
 		}
-
-		
 
 		
 		std::ostringstream streamObj;
@@ -100,6 +92,7 @@ int Game::run()
 		std::string powerVar = streamObj.str();
 		std::dynamic_pointer_cast<tgui::Label>(gui.get("Money_var"))->setText(moneyVar);
 		std::dynamic_pointer_cast<tgui::Label>(gui.get("Power_var"))->setText(powerVar);
+		std::dynamic_pointer_cast<tgui::Label>(gui.get("MaxPower_var"))->setText(labelMaxPowerText(reactor));
 		
 		window.clear(sf::Color::White);
 		window.draw(map);
