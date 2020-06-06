@@ -1,15 +1,12 @@
 #include "Game.h"
 
-void sru() {
-	std::cout << "sru" << std::endl;
-}
 
 int Game::run()
 {
 	window.create(vMode, "test");
 	window.setFramerateLimit(60);
 	tgui::Gui gui(window);
-	bool txtBoxChanged = false;
+	bool txtBoxChanged = true;
 
 	level = levelGenerator("Default");
 	loadPartsJson("parts.json");
@@ -25,22 +22,7 @@ int Game::run()
 	Reactor reactor{ level, 16, 9 };
 	try
 	{
-		gui.loadWidgetsFromFile("../gui/reactorGame.txt");
-		std::dynamic_pointer_cast<tgui::Label>(gui.get("MaxPower_var"))->setText(labelMaxPowerText(reactor));
-		std::dynamic_pointer_cast<tgui::Button>(gui.get("powerSell"))->connect("clicked", [&]() { reactor.sellPower(); });
-		//std::dynamic_pointer_cast<tgui::Label>(gui.get("Money_var"))->connect("MouseEntered", sru);
-		std::dynamic_pointer_cast<tgui::ClickableWidget>(gui.get("Wind turbine"))->connect(
-			"clicked", [&]() { selectedPart = "Wind turbine"; txtBoxChanged = true; });
-		std::dynamic_pointer_cast<tgui::ClickableWidget>(gui.get("Basic Battery"))->connect(
-			"clicked", [&]() { selectedPart = "Basic Battery"; txtBoxChanged = true; });
-		std::dynamic_pointer_cast<tgui::ClickableWidget>(gui.get("Home office"))->connect(
-			"clicked", [&]() { selectedPart = "Home office"; txtBoxChanged = true; });
-		std::dynamic_pointer_cast<tgui::ClickableWidget>(gui.get("Solar cell"))->connect(
-			"clicked", [&]() { selectedPart = "Solar cell"; txtBoxChanged = true; });
-		std::dynamic_pointer_cast<tgui::ClickableWidget>(gui.get("Basic generator"))->connect(
-			"clicked", [&]() { selectedPart = "Basic generator"; txtBoxChanged = true; });
-		std::dynamic_pointer_cast<tgui::Button>(gui.get("UpgradesMenu"))->connect("clicked", [&]() {
-			gui.get("Group1")->setVisible(!gui.get("Group1")->isVisible());	});
+		guiInitialize(gui, txtBoxChanged, reactor);
 	}
 	catch (const tgui::Exception& e)
 	{
@@ -126,6 +108,40 @@ int Game::run()
 		window.display();
 	}
 	return EXIT_SUCCESS;
+}
+
+void Game::guiInitialize(tgui::Gui& gui, bool& txtBoxChanged, Reactor& reactor) {
+	gui.loadWidgetsFromFile("../gui/reactorGame.txt");
+	std::dynamic_pointer_cast<tgui::Label>(gui.get("MaxPower_var"))->setText(labelMaxPowerText(reactor));
+	std::dynamic_pointer_cast<tgui::Button>(gui.get("powerSell"))->connect("clicked", [&]() { reactor.sellPower(); });
+	std::dynamic_pointer_cast<tgui::ClickableWidget>(gui.get("Wind turbine"))->connect(
+		"clicked", [&]() {
+			selectedPart = "Wind turbine";
+			txtBoxChanged = true;
+		});
+	std::dynamic_pointer_cast<tgui::ClickableWidget>(gui.get("Basic Battery"))->connect(
+		"clicked", [&]() {
+			selectedPart = "Basic Battery";
+			txtBoxChanged = true;
+		});
+	std::dynamic_pointer_cast<tgui::ClickableWidget>(gui.get("Home office"))->connect(
+		"clicked", [&]() {
+			selectedPart = "Home office";
+			txtBoxChanged = true;
+		});
+	std::dynamic_pointer_cast<tgui::ClickableWidget>(gui.get("Solar cell"))->connect(
+		"clicked", [&]() {
+			selectedPart = "Solar cell";
+			txtBoxChanged = true;
+		});
+	std::dynamic_pointer_cast<tgui::ClickableWidget>(gui.get("Basic generator"))->connect(
+		"clicked", [&]() {
+			selectedPart = "Basic generator";
+			txtBoxChanged = true;
+		});
+	std::dynamic_pointer_cast<tgui::Button>(gui.get("UpgradesMenu"))->connect("clicked", [&]() {
+		gui.get("Group1")->setVisible(!gui.get("Group1")->isVisible());
+	});
 }
 
 inline std::vector<int> Game::levelGenerator(std::string levelType) {
