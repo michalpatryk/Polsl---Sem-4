@@ -141,17 +141,33 @@ void Game::guiInitialize(tgui::Gui& gui, bool& txtBoxChanged, Reactor& reactor) 
 		"clicked", [&]() {
 		reactor.onUpgradeClick(Types::PowerSource, UpgradeTypes::MainMultiplier);
 	});
+	//On hover
+	std::dynamic_pointer_cast<tgui::ClickableWidget>(gui.get("UpgradeWindTurbine"))->connect(
+		"mouseEntered", [&]() {
+		std::dynamic_pointer_cast<tgui::TextBox>(gui.get("TextBox1"))->setText(
+			reactor.getUpgradePrice(Types::PowerSource, UpgradeTypes::MainMultiplier));
+	});
 	
 	reactor.upgradeByGuiInit(Types::Generator, UpgradeTypes::MainMultiplier, 2.0, 100);
 	std::dynamic_pointer_cast<tgui::ClickableWidget>(gui.get("UpgradeGenerator"))->connect(
 		"clicked", [&]() {
 		reactor.onUpgradeClick(Types::Generator, UpgradeTypes::MainMultiplier);
 	});
+	std::dynamic_pointer_cast<tgui::ClickableWidget>(gui.get("UpgradeGenerator"))->connect(
+		"mouseEntered", [&]() {
+		std::dynamic_pointer_cast<tgui::TextBox>(gui.get("TextBox1"))->setText(
+			reactor.getUpgradePrice(Types::Generator, UpgradeTypes::MainMultiplier));
+	});
 
 	reactor.upgradeByGuiInit(Types::HeatSource, UpgradeTypes::MainMultiplier, 2.0, 100);
 	std::dynamic_pointer_cast<tgui::ClickableWidget>(gui.get("UpgradeSolarCell"))->connect(
 		"clicked", [&]() {
 		reactor.onUpgradeClick(Types::HeatSource, UpgradeTypes::MainMultiplier);
+	});
+	std::dynamic_pointer_cast<tgui::ClickableWidget>(gui.get("UpgradeSolarCell"))->connect(
+		"mouseEntered", [&]() {
+		std::dynamic_pointer_cast<tgui::TextBox>(gui.get("TextBox1"))->setText(
+			reactor.getUpgradePrice(Types::HeatSource, UpgradeTypes::MainMultiplier));
 	});
 }
 

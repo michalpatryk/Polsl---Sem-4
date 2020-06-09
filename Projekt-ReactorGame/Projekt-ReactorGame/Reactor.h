@@ -54,9 +54,18 @@ public:
 	///Zwraca obiekt zegara w celu jego uruchomienia w innym wątku
 	Clock& getClock() {return std::ref(clock);}
 	//UpgradesManager& getUpgradesManager() { return std::ref(upgradesManager); }
-	void onUpgradeClick(Types type, UpgradeTypes upgradeType) { upgradesManager.upgrade(type, upgradeType); }
+	void onUpgradeClick(Types type, UpgradeTypes upgradeType) {
+		if(upgradesManager.upgrade(type, upgradeType, money)) {
+			
+		};
+	}
 	void upgradeByGuiInit(Types type, UpgradeTypes upgradeType, double multiplier, double price) {
 		upgradesManager.guiUpgradeInitialize(type, upgradeType, multiplier, price);
+	}
+	std::string getUpgradePrice(Types type, UpgradeTypes upgradeType) {
+		std::string str = "Upgrade price is: ";
+		str += std::to_string(upgradesManager.getPrice(type, upgradeType));
+		return str;
 	}
 	//DEBUG ONLY FUNCTION - to know current ticks
 	int getTick() {	return clock.getTick();}

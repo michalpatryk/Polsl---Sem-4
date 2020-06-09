@@ -254,15 +254,15 @@ Button.UpgradesMenu {
 }
 
 Group.Group1 {
-    Position = (225, 20);
-    Size = (575, 580);
+    Position = (225, 160);
+    Size = (575, 420);
     Visible = false;
 
     Renderer {
     }
 
     Panel.Panel1 {
-        Size = (575, 580);
+        Size = (575, 420);
 
         Renderer {
             backgroundcolor = white;
@@ -287,14 +287,14 @@ Group.Group1 {
         }
 
         Picture.UpgradeWindTurbine {
-            Position = (10, 540);
+            Position = (10, 380);
             Size = (32, 32);
             renderer = &3;
         }
 
         Label.UpgradeWindTurbineLabel {
             AutoSize = true;
-            Position = (50, 550);
+            Position = (50, 390);
             ScrollbarPolicy = Never;
             Size = (255.2, 18);
             Text = "Doubles wind turbine power generation";
@@ -303,20 +303,20 @@ Group.Group1 {
         }
 
         Picture.UpgradeSolarCell {
-            Position = (10, 500);
+            Position = (10, 340);
             Size = (32, 32);
             renderer = &3;
         }
 
         Picture.UpgradeGenerator {
-            Position = (10, 460);
+            Position = (10, 300);
             Size = (32, 32);
             renderer = &3;
         }
 
         Label.UpgradeSolarCellLabel {
             AutoSize = true;
-            Position = (50, 510);
+            Position = (50, 350);
             ScrollbarPolicy = Never;
             Size = (221.2, 18);
             Text = "Doubles solar cell heat generation";
@@ -326,7 +326,7 @@ Group.Group1 {
 
         Label.UpgradeGeneratorLabel {
             AutoSize = true;
-            Position = (50, 470);
+            Position = (50, 310);
             ScrollbarPolicy = Never;
             Size = (196.2, 18);
             Text = "Doubles generator conversion";
