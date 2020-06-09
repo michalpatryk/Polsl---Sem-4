@@ -16,8 +16,13 @@ class Upgrade
 	double multiplier{};
 	double price{};
 public:
+	Upgrade(Types type, UpgradeTypes upgradeType, double multiplier, double price) :type(type), upgradeType(upgradeType), multiplier(multiplier),
+		price(price) {	}
+
+	double getUpgradePrice() { return price * (level + 1)*(level + 1); }
 	double getMultiplier() { return multiplier; }
-	UpgradeTypes getType() { return upgradeType; }
+	UpgradeTypes getUpgradeType() { return upgradeType; }
+	Types getType() { return type; }
 	void upgrade() { level++; }
 };
 

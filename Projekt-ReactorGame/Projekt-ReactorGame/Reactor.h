@@ -52,22 +52,18 @@ public:
 	void sellPower();
 
 	///Zwraca obiekt zegara w celu jego uruchomienia w innym wątku
-	Clock& getClock() {
-		return std::ref(clock);
+	Clock& getClock() {return std::ref(clock);}
+	//UpgradesManager& getUpgradesManager() { return std::ref(upgradesManager); }
+	void onUpgradeClick(Types type, UpgradeTypes upgradeType) { upgradesManager.upgrade(type, upgradeType); }
+	void upgradeByGuiInit(Types type, UpgradeTypes upgradeType, double multiplier, double price) {
+		upgradesManager.guiUpgradeInitialize(type, upgradeType, multiplier, price);
 	}
-	
 	//DEBUG ONLY FUNCTION - to know current ticks
-	int getTick() {
-		return clock.getTick();
-	}
+	int getTick() {	return clock.getTick();}
 
 	///Służy do manualnego wyłączenia zegara
-	void reactorShutdown() {
-		clock.initializeShutdown();
-	}
-	std::vector<std::vector<Tile>>& getTiles() {
-		return tiles;
-	}
+	void reactorShutdown() {	clock.initializeShutdown();}
+	std::vector<std::vector<Tile>>& getTiles() {	return tiles;}
 	///Liczy maksymalną moc reaktora
 	void recalculateMaxPower();
 
@@ -81,5 +77,9 @@ public:
 		//return j["basePrice"].get<float>();
 	}
 	double getMaxPower() { return maxPower; }
+	
+	void upgradeClock() {
+		//if(//clock.upgradeClock())
+	}
 };
 

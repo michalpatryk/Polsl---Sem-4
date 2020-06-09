@@ -135,6 +135,24 @@ void Game::guiInitialize(tgui::Gui& gui, bool& txtBoxChanged, Reactor& reactor) 
 	std::dynamic_pointer_cast<tgui::Button>(gui.get("UpgradesMenu"))->connect("clicked", [&]() {
 		gui.get("Group1")->setVisible(!gui.get("Group1")->isVisible());
 	});
+	//Initializing upgrade menu - the simplest way, as opposed to complex, json initialized part setup
+	reactor.upgradeByGuiInit(Types::PowerSource, UpgradeTypes::MainMultiplier, 2.0, 100);
+	std::dynamic_pointer_cast<tgui::ClickableWidget>(gui.get("UpgradeWindTurbine"))->connect(
+		"clicked", [&]() {
+		reactor.onUpgradeClick(Types::PowerSource, UpgradeTypes::MainMultiplier);
+	});
+	
+	reactor.upgradeByGuiInit(Types::Generator, UpgradeTypes::MainMultiplier, 2.0, 100);
+	std::dynamic_pointer_cast<tgui::ClickableWidget>(gui.get("UpgradeGenerator"))->connect(
+		"clicked", [&]() {
+		reactor.onUpgradeClick(Types::Generator, UpgradeTypes::MainMultiplier);
+	});
+
+	reactor.upgradeByGuiInit(Types::HeatSource, UpgradeTypes::MainMultiplier, 2.0, 100);
+	std::dynamic_pointer_cast<tgui::ClickableWidget>(gui.get("UpgradeSolarCell"))->connect(
+		"clicked", [&]() {
+		reactor.onUpgradeClick(Types::HeatSource, UpgradeTypes::MainMultiplier);
+	});
 }
 
 inline std::vector<int> Game::levelGenerator(std::string levelType) {

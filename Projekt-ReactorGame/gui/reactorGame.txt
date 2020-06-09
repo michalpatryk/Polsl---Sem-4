@@ -319,7 +319,7 @@ Group.Group1 {
             Position = (50, 510);
             ScrollbarPolicy = Never;
             Size = (221.2, 18);
-            Text = "Doubles colar cell heat generation";
+            Text = "Doubles solar cell heat generation";
             TextSize = 13;
             renderer = &2;
         }
