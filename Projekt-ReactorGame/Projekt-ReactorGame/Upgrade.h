@@ -22,7 +22,10 @@ public:
 	double getUpgradePrice() { return price * (level + 1)*(level + 1); }
 	double getMultiplier() {
 		if (level == 0) return 1;
-		else return multiplier * level;
+		else return multiplier * level * level;
+	}
+	int getLevel() {
+		return level;
 	}
 	UpgradeTypes getUpgradeType() { return upgradeType; }
 	Types getType() { return type; }

@@ -151,7 +151,7 @@ void Game::guiInitialize(tgui::Gui& gui, bool& txtBoxChanged, Reactor& reactor) 
 	std::dynamic_pointer_cast<tgui::ClickableWidget>(gui.get("UpgradeWindTurbine"))->connect(
 		"mouseEntered", [&]() {
 		std::dynamic_pointer_cast<tgui::TextBox>(gui.get("TextBox1"))->setText(
-			reactor.getUpgradePrice(Types::PowerSource, UpgradeTypes::MainMultiplier));
+			onUpgradeHoverTextBoxText(Types::PowerSource, UpgradeTypes::MainMultiplier, reactor));
 	});
 	
 	reactor.upgradeByGuiInit(Types::Generator, UpgradeTypes::MainMultiplier, 2.0, 100);
@@ -161,7 +161,7 @@ void Game::guiInitialize(tgui::Gui& gui, bool& txtBoxChanged, Reactor& reactor) 
 	std::dynamic_pointer_cast<tgui::ClickableWidget>(gui.get("UpgradeGenerator"))->connect(
 		"mouseEntered", [&]() {
 		std::dynamic_pointer_cast<tgui::TextBox>(gui.get("TextBox1"))->setText(
-			reactor.getUpgradePrice(Types::Generator, UpgradeTypes::MainMultiplier));
+			onUpgradeHoverTextBoxText(Types::Generator, UpgradeTypes::MainMultiplier, reactor));
 	});
 
 	reactor.upgradeByGuiInit(Types::HeatSource, UpgradeTypes::MainMultiplier, 2.0, 120);
@@ -171,7 +171,7 @@ void Game::guiInitialize(tgui::Gui& gui, bool& txtBoxChanged, Reactor& reactor) 
 	std::dynamic_pointer_cast<tgui::ClickableWidget>(gui.get("UpgradeSolarCell"))->connect(
 		"mouseEntered", [&]() {
 		std::dynamic_pointer_cast<tgui::TextBox>(gui.get("TextBox1"))->setText(
-			reactor.getUpgradePrice(Types::HeatSource, UpgradeTypes::MainMultiplier));
+			onUpgradeHoverTextBoxText(Types::HeatSource, UpgradeTypes::MainMultiplier, reactor));
 	});
 	
 	reactor.upgradeByGuiInit(Types::Battery, UpgradeTypes::MainMultiplier, 2.0, 100);
@@ -184,7 +184,7 @@ void Game::guiInitialize(tgui::Gui& gui, bool& txtBoxChanged, Reactor& reactor) 
 	std::dynamic_pointer_cast<tgui::ClickableWidget>(gui.get("UpgradeBattery"))->connect(
 		"mouseEntered", [&]() {
 		std::dynamic_pointer_cast<tgui::TextBox>(gui.get("TextBox1"))->setText(
-			reactor.getUpgradePrice(Types::Battery, UpgradeTypes::MainMultiplier));
+			onUpgradeHoverTextBoxText(Types::Battery, UpgradeTypes::MainMultiplier, reactor));
 	});
 }
 
@@ -228,6 +228,17 @@ std::string Game::textBoxText() {
 	}
 	std::string a = oss.str();
 	return a;
+}
+
+std::string Game::onUpgradeHoverTextBoxText(Types type, UpgradeTypes upgradeType, Reactor& reactor)
+{
+	std::ostringstream oss;
+	oss << "Upgrade price: " << reactor.getUpgradePrice(type, upgradeType) << std::endl;
+	oss << "Current level: " << reactor.getUpgradeLevel(type, upgradeType) << std::endl;
+	oss << "Current multiplier: " << reactor.getUpgradeMultiplier(type, upgradeType) << std::endl;
+	std::string str = oss.str();
+	
+	return str;
 }
 
 std::string Game::labelMaxPowerText(Reactor& reactor) {

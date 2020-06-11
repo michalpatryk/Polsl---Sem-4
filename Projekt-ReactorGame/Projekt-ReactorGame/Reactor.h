@@ -34,7 +34,7 @@ public:
 	double getPower() const { return power; }
 
 	double getMoney() const { return money; }
-	
+
 	///Sprawdza, czy zegar ma jakieś nieobliczone takty. Jeżeli tak, oblicza je
 	void checkTick(TileMap& partMap);
 
@@ -52,20 +52,29 @@ public:
 	void sellPower();
 
 	///Zwraca obiekt zegara w celu jego uruchomienia w innym wątku
-	Clock& getClock() {return std::ref(clock);}
+	Clock& getClock() { return std::ref(clock); }
 	//UpgradesManager& getUpgradesManager() { return std::ref(upgradesManager); }
 	void onUpgradeClick(Types type, UpgradeTypes upgradeType) {
-		if(upgradesManager.upgrade(type, upgradeType, money)) {
-			
+		if (upgradesManager.upgrade(type, upgradeType, money)) {
+
 		};
 	}
 	void upgradeByGuiInit(Types type, UpgradeTypes upgradeType, double multiplier, double price) {
 		upgradesManager.guiUpgradeInitialize(type, upgradeType, multiplier, price);
 	}
-	std::string getUpgradePrice(Types type, UpgradeTypes upgradeType) {
-		std::string str = "Upgrade price is: ";
-		str += std::to_string(upgradesManager.getPrice(type, upgradeType));
-		return str;
+	//std::string getUpgradePrice(Types type, UpgradeTypes upgradeType) {
+	//	std::string str = "Upgrade price is: ";
+	//	str += std::to_string(upgradesManager.getPrice(type, upgradeType));
+	//	return str;
+	//}
+	double getUpgradePrice(Types type, UpgradeTypes upgradeType) {
+		return upgradesManager.getPrice(type, upgradeType);
+	}
+	int getUpgradeLevel(Types type, UpgradeTypes upgradeType) {
+		return upgradesManager.getLevel(type, upgradeType);
+	}
+	double getUpgradeMultiplier(Types type, UpgradeTypes upgradeType) {
+		return upgradesManager.getMultiplier(type, upgradeType);
 	}
 	//DEBUG ONLY FUNCTION - to know current ticks
 	int getTick() {	return clock.getTick();}

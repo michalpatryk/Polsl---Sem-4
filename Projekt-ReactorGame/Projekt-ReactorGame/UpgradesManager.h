@@ -29,6 +29,13 @@ public:
 		}
 		return 0;
 	}
+	double getLevel(Types type, UpgradeTypes upgradeType) {
+		auto upgradee = findUpgrade(type, upgradeType);
+		if (upgradee) {
+			return upgradee->getLevel();
+		}
+		else return 1;
+	}
 	double getMultiplier(Types type, UpgradeTypes upgradeType) {
 		auto upgradee = findUpgrade(type, upgradeType);
 		if (upgradee) {

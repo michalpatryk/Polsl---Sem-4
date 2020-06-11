@@ -25,9 +25,10 @@ public:
 	void guiInitialize(tgui::Gui& gui, bool& txtBoxChanged, Reactor& reactor);
 	void loadPartsJson(std::string filename) { partsJson = jsonManager.loadJson(filename); }
 	std::vector<int> levelGenerator(std::string levelType);
-	//void upgradeGuiOnClick(Types type, UpgradeTypes upgradeType, std::string partName, tgui::Gui& gui, Reactor& reactor);
+	
 
 	std::string textBoxText();
+	std::string onUpgradeHoverTextBoxText(Types type, UpgradeTypes upgradeType, Reactor& reactor);
 
 	std::string labelMaxPowerText(Reactor& reactor);
 	nlohmann::json getTypeJson(std::string type);
