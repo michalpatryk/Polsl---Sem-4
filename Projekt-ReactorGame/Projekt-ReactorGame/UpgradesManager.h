@@ -20,7 +20,6 @@ public:
 	}
 	
 	bool upgrade(Types type, UpgradeTypes upgradeType, double &avaliableFunds) {
-		std::cout << getMultiplier(type, upgradeType) << std::endl;
 		auto upgradee = findUpgrade(type, upgradeType);
 		if(upgradee && avaliableFunds > upgradee->getUpgradePrice()) {
 			//Order is important! Or the price will be bigger than it should be

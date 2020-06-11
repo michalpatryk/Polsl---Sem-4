@@ -25,6 +25,7 @@ public:
 	void guiInitialize(tgui::Gui& gui, bool& txtBoxChanged, Reactor& reactor);
 	void loadPartsJson(std::string filename) { partsJson = jsonManager.loadJson(filename); }
 	std::vector<int> levelGenerator(std::string levelType);
+	//void upgradeGuiOnClick(Types type, UpgradeTypes upgradeType, std::string partName, tgui::Gui& gui, Reactor& reactor);
 
 	std::string textBoxText();
 
