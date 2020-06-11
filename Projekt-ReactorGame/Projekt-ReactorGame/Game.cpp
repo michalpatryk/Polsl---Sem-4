@@ -136,7 +136,7 @@ void Game::guiInitialize(tgui::Gui& gui, bool& txtBoxChanged, Reactor& reactor) 
 		gui.get("Group1")->setVisible(!gui.get("Group1")->isVisible());
 	});
 	//Initializing upgrade menu - the simplest way, as opposed to complex, json initialized part setup
-	reactor.upgradeByGuiInit(Types::PowerSource, UpgradeTypes::MainMultiplier, 2.0, 100);
+	reactor.upgradeByGuiInit(Types::PowerSource, UpgradeTypes::MainMultiplier, 2.0, 50);
 	std::dynamic_pointer_cast<tgui::ClickableWidget>(gui.get("UpgradeWindTurbine"))->connect(
 		"clicked", [&]() {
 		reactor.onUpgradeClick(Types::PowerSource, UpgradeTypes::MainMultiplier);
@@ -159,7 +159,7 @@ void Game::guiInitialize(tgui::Gui& gui, bool& txtBoxChanged, Reactor& reactor) 
 			reactor.getUpgradePrice(Types::Generator, UpgradeTypes::MainMultiplier));
 	});
 
-	reactor.upgradeByGuiInit(Types::HeatSource, UpgradeTypes::MainMultiplier, 2.0, 100);
+	reactor.upgradeByGuiInit(Types::HeatSource, UpgradeTypes::MainMultiplier, 2.0, 120);
 	std::dynamic_pointer_cast<tgui::ClickableWidget>(gui.get("UpgradeSolarCell"))->connect(
 		"clicked", [&]() {
 		reactor.onUpgradeClick(Types::HeatSource, UpgradeTypes::MainMultiplier);

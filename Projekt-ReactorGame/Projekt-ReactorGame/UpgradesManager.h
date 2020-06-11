@@ -30,12 +30,19 @@ public:
 		}
 		return 0;
 	}
-	double getMultiplier(Types type, UpgradeTypes upgradeType) { return 1; }
+	double getMultiplier(Types type, UpgradeTypes upgradeType) {
+		auto upgradee = findUpgrade(type, upgradeType);
+		if (upgradee) {
+			return upgradee->getMultiplier();
+		}
+		else return 1;
+	}
 	double getPrice(Types type, UpgradeTypes upgradeType) {
 		auto upgradee = findUpgrade(type, upgradeType);
 		if(upgradee) {
 			return upgradee->getUpgradePrice();
 		}
+		else return 0;
 	}
 };
 
