@@ -344,5 +344,25 @@ Group.Group1 {
             TextSize = 13;
             renderer = &2;
         }
+
+        Picture.UpgradeBattery {
+            Position = (10, 260);
+            Size = (32, 32);
+
+            Renderer {
+                texture = "../resources/BasicBattery.png";
+                transparenttexture = false;
+            }
+        }
+
+        Label.UpgradeBatteryLabel {
+            AutoSize = true;
+            Position = (50, 270);
+            ScrollbarPolicy = Never;
+            Size = (164.2, 18);
+            Text = "Doubles battery capacity";
+            TextSize = 13;
+            renderer = &2;
+        }
     }
 }

@@ -39,7 +39,8 @@ void Reactor::checkTick(TileMap& partMap) {
 				std::shared_ptr<Part> part = jt.getPart();
 				if (part) {
 					if (part->getType() == Types::Seller) {
-						sellingPower += std::static_pointer_cast<Seller>(part)->getBaseSell();
+						sellingPower += std::static_pointer_cast<Seller>(part)->getBaseSell() * 
+							upgradesManager.getMultiplier(Types::Seller, UpgradeTypes::MainMultiplier);
 					}
 				}
 			}
@@ -52,7 +53,8 @@ void Reactor::checkTick(TileMap& partMap) {
 				std::shared_ptr<Part> part = jt.getPart();
 				if (part) {
 					if (part->getType() == Types::PowerSource) {
-						power += std::static_pointer_cast<PowerSource>(part)->getBasePowerGeneration();
+						power += std::static_pointer_cast<PowerSource>(part)->getBasePowerGeneration() *
+							upgradesManager.getMultiplier(Types::PowerSource, UpgradeTypes::MainMultiplier);
 					}
 					else if (part->getType() == Types::HeatSource) {
 						heatGeneratorTiles.push_back(jt);
@@ -82,12 +84,12 @@ void Reactor::checkTick(TileMap& partMap) {
 				//heat generator
 				if (jt.getPart()->isHeatAffected()) {
 					jt.getPart()->getPartHeatHandle()->heatUp(
-						std::static_pointer_cast<HeatSource>(it.getPart())->getBaseHeatGeneration() / tilesToHeatUp.
-						size());
+						std::static_pointer_cast<HeatSource>(it.getPart())->getBaseHeatGeneration() * 
+							upgradesManager.getMultiplier(Types::HeatSource, UpgradeTypes::MainMultiplier) / 
+							tilesToHeatUp.size());
 				}
 			}
 		}
-		bool explosion = false;
 		//all parts are now heated up. Now is the time to use the generators and dissipate the heat
 		for (auto it : tiles) {
 			for (auto jt : it) {
@@ -95,7 +97,8 @@ void Reactor::checkTick(TileMap& partMap) {
 				if (part) {
 					if (part->getType() == Types::Generator) {
 						double heat = part->getPartHeatHandle()->getHeat();
-						double heatConversionPower = std::static_pointer_cast<Generator>(part)->getBaseHeatConversion();
+						double heatConversionPower = std::static_pointer_cast<Generator>(part)->getBaseHeatConversion() * 
+							upgradesManager.getMultiplier(Types::Generator, UpgradeTypes::MainMultiplier);
 						if (heat - heatConversionPower < 0) {
 							power += heat;
 							part->getPartHeatHandle()->coolDown(heat);
@@ -107,7 +110,8 @@ void Reactor::checkTick(TileMap& partMap) {
 					}
 					//check for overheat
 					if (part->isHeatAffected()) {
-						if (part->getPartHeatHandle()->getHeat() > part->getPartHeatHandle()->getBaseMaxHeat()) {
+						if (part->getPartHeatHandle()->getHeat() > part->getPartHeatHandle()->getBaseMaxHeat() * 
+								upgradesManager.getMultiplier(part->getType(), UpgradeTypes::MaxHeat)) {
 							tiles[jt.getLocation().y][jt.getLocation().x].deletePart();
 							partMap.change(jt.getLocation(), sf::Vector2i{0, 0});
 							recalculateMaxPower();
@@ -192,7 +196,8 @@ void Reactor::recalculateMaxPower() {
 			std::shared_ptr<Part> part = jt.getPart();
 			if (part) {
 				if (part->getType() == Types::Battery) {
-					maxPower += std::static_pointer_cast<Battery>(part)->getCapacity();
+					maxPower += std::static_pointer_cast<Battery>(part)->getCapacity() * 
+						upgradesManager.getMultiplier(Types::Battery, UpgradeTypes::MainMultiplier);
 				}
 			}
 		}

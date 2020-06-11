@@ -169,6 +169,18 @@ void Game::guiInitialize(tgui::Gui& gui, bool& txtBoxChanged, Reactor& reactor) 
 		std::dynamic_pointer_cast<tgui::TextBox>(gui.get("TextBox1"))->setText(
 			reactor.getUpgradePrice(Types::HeatSource, UpgradeTypes::MainMultiplier));
 	});
+	
+	reactor.upgradeByGuiInit(Types::Battery, UpgradeTypes::MainMultiplier, 2.0, 100);
+	std::dynamic_pointer_cast<tgui::ClickableWidget>(gui.get("UpgradeBattery"))->connect(
+		"clicked", [&]() {
+		reactor.onUpgradeClick(Types::Battery, UpgradeTypes::MainMultiplier);
+		reactor.recalculateMaxPower();
+	});
+	std::dynamic_pointer_cast<tgui::ClickableWidget>(gui.get("UpgradeBattery"))->connect(
+		"mouseEntered", [&]() {
+		std::dynamic_pointer_cast<tgui::TextBox>(gui.get("TextBox1"))->setText(
+			reactor.getUpgradePrice(Types::Battery, UpgradeTypes::MainMultiplier));
+	});
 }
 
 inline std::vector<int> Game::levelGenerator(std::string levelType) {
