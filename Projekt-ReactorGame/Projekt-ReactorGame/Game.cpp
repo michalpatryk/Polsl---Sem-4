@@ -179,6 +179,8 @@ void Game::guiInitialize(tgui::Gui& gui, bool& txtBoxChanged, Reactor& reactor) 
 	std::dynamic_pointer_cast<tgui::ClickableWidget>(gui.get("UpgradeBattery"))->connect(
 		"clicked", [&]() {
 		reactor.onUpgradeClick(Types::Battery, UpgradeTypes::MainMultiplier);
+		std::dynamic_pointer_cast<tgui::TextBox>(gui.get("TextBox1"))->setText(
+			onUpgradeHoverTextBoxText(Types::Battery, UpgradeTypes::MainMultiplier, reactor));
 		reactor.recalculateMaxPower();
 	});
 	std::dynamic_pointer_cast<tgui::ClickableWidget>(gui.get("UpgradeBattery"))->connect(

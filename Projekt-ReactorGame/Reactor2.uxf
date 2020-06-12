@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.3.0">
-  <zoom_level>9</zoom_level>
+  <zoom_level>8</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>99</x>
-      <y>387</y>
-      <w>171</w>
-      <h>81</h>
+      <x>120</x>
+      <y>464</y>
+      <w>160</w>
+      <h>80</h>
     </coordinates>
-    <panel_attributes>Cell
+    <panel_attributes>bg=Orange
+HeatSource
 --
--double baseHeatGeneration
--double heat
--durability
+-baseHeatGeneration: double 
+-baseDurability: double 
+-durability: double
+--
++getBaseHeatGeneration(): double
 
 </panel_attributes>
     <additional_attributes/>
@@ -21,15 +24,34 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>99</x>
-      <y>477</y>
-      <w>135</w>
+      <x>120</x>
+      <y>552</y>
+      <w>120</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>bg=Orange
+Reflector
+--
+-heatMult: double
+-durability: double
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>120</x>
+      <y>384</y>
+      <w>120</w>
       <h>72</h>
     </coordinates>
-    <panel_attributes>Reflector
+    <panel_attributes>bg=Orange
+Seller
 --
--double heatMult
--durability
+-baseSell
+--
++getBaseSell(): double
 
 </panel_attributes>
     <additional_attributes/>
@@ -37,17 +59,65 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>99</x>
-      <y>297</y>
-      <w>135</w>
-      <h>81</h>
+      <x>120</x>
+      <y>696</y>
+      <w>192</w>
+      <h>64</h>
     </coordinates>
-    <panel_attributes>Seller
+    <panel_attributes>bg=Orange
+Generator
 --
--double capacity
--double baseCapacity
--double heat
--double baseMaxHeat
+-baseHeatConversion: double 
+--
++getBaseHeatConversion(): double
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>120</x>
+      <y>624</y>
+      <w>120</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>bg=Orange
+Coolant
+--
+-heatLeft: double </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>728</x>
+      <y>384</y>
+      <w>304</w>
+      <h>272</h>
+    </coordinates>
+    <panel_attributes>Reactor
+--
+-power: double 
+-maxPower: double
+-money: double 
+-tiles: vector&lt;vector&lt;Tile\&gt;&gt;
+-tileMap: vector&lt;int&gt;
+-upgradesManager: UpgradesManager
+--
++getPower(): double 
++getMoney(): double
++checkTick(TileMap)
++buyPart(json, sf::Vector2i, TileMap&amp;): string
++sellPart(sf::Vector2i, TileMap&amp;): string
++sellPower()
++getClock(): &amp;Clock
++onUpgradeClick(Types, UpgradeTypes)
++upgradeByGuiInit(Types, UpgradeTypes, double, double)
++getUpgradePrice(Types, UpgradeTypes): double
++getUpgradeLevel(Types, UpgradeTypes): int
++getUpgradeMultiplier(Types, UpgradeTypes): double
++reactorShutdown()
+
 
 </panel_attributes>
     <additional_attributes/>
@@ -55,85 +125,37 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>99</x>
-      <y>666</y>
-      <w>144</w>
-      <h>72</h>
+      <x>352</x>
+      <y>384</y>
+      <w>176</w>
+      <h>288</h>
     </coordinates>
-    <panel_attributes>Generator
+    <panel_attributes>bg=Orange
+Part
 --
--double baseConversion
--double baseHeat
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>99</x>
-      <y>558</y>
-      <w>135</w>
-      <h>72</h>
-    </coordinates>
-    <panel_attributes>Coolant
+#partHeat: shared_ptr&lt;PartHeat&gt;
+#type: Types
+#model: string
+#Description: string 
+#level: int 
+#basePrice: double 
+#costMult: double 
+#isCalc: int 
+#heatAffected: bool 
 --
--double heatLeft</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>783</x>
-      <y>396</y>
-      <w>189</w>
-      <h>180</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Singleton&gt;&gt;
-Reactor
---
--double power
--double money
--vector&lt;Tile&gt; tiles
---
-
--bool checkIfUpgraded()
-+bool checkPrice()
-+void sellPower()
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>360</x>
-      <y>297</y>
-      <w>189</w>
-      <h>324</h>
-    </coordinates>
-    <panel_attributes>Part
---
-+string type
-+string Description
-+int levels
--int level
--double basePrice
--double costMult
-+int isCalc
--bool heatAffected
---
-+void Destroy()
-+void Upgrade()
-+string getPartType()
-+bool isHeatAffected()</panel_attributes>
++isHeatAffected(): bool
++getType(): Types
++getBasePrice(): double
++getPartHandle(): shared_ptr&lt;PartHead&gt;</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>225</x>
-      <y>324</y>
-      <w>153</w>
-      <h>27</h>
+      <x>232</x>
+      <y>408</y>
+      <w>136</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>150.0;10.0;10.0;10.0</additional_attributes>
@@ -141,32 +163,21 @@ Reactor
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>261</x>
-      <y>387</y>
-      <w>117</w>
-      <h>27</h>
+      <x>272</x>
+      <y>464</y>
+      <w>96</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>110.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>100.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>225</x>
-      <y>504</y>
-      <w>153</w>
-      <h>27</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>150.0;10.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>225</x>
+      <x>232</x>
       <y>576</y>
-      <w>153</w>
-      <h>27</h>
+      <w>136</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>150.0;10.0;10.0;10.0</additional_attributes>
@@ -174,331 +185,211 @@ Reactor
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>234</x>
-      <y>612</y>
-      <w>171</w>
-      <h>108</h>
+      <x>232</x>
+      <y>640</y>
+      <w>136</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>170.0;10.0;170.0;100.0;10.0;100.0</additional_attributes>
+    <additional_attributes>150.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>304</x>
+      <y>664</y>
+      <w>88</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>90.0;10.0;90.0;80.0;10.0;80.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>999</x>
-      <y>657</y>
-      <w>189</w>
-      <h>108</h>
+      <x>1088</x>
+      <y>472</y>
+      <w>168</w>
+      <h>176</h>
     </coordinates>
-    <panel_attributes>&lt;&lt;Singleton&gt;&gt;
+    <panel_attributes>
 &lt;&lt;Thread2&gt;&gt;
 Clock
 --
--int ticksPerSecond
+-tick: int
+-level: int
+-shutdown: bool
+-&amp;mtx: std::mutex
 --
-+bool checkIfUpdate()
-+void upgrade()</panel_attributes>
+-wait()
++upgradeClock: bool
++resetTick()
++getTick(): int
++initializeShutdown()
++operator()()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>594</x>
-      <y>414</y>
-      <w>135</w>
-      <h>189</h>
+      <x>560</x>
+      <y>488</y>
+      <w>128</w>
+      <h>168</h>
     </coordinates>
-    <panel_attributes>Tile
+    <panel_attributes>bg=Orange
+Tile
 --
--coord location
--string tileType
--Part part
+-location: sf::Vector2i
+-tileType: TileType
+-part: shared_ptr&lt;Part&gt;
 --
-+bool buyPart(type)
-+bool sellPart(type)
-+string getPartType
-+string getTileType()
-+coord getLocation()
-+&amp;Part getPart(coord)</panel_attributes>
++createPart(json)
++deletePart()
++getPart(): shared_ptr&lt;Part&gt;
++getTileType(): TileType
++getLocation(): sf::Vector2i</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>963</x>
-      <y>540</y>
-      <w>144</w>
-      <h>135</h>
+      <x>1024</x>
+      <y>488</y>
+      <w>80</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;140.0;10.0;140.0;130.0</additional_attributes>
+    <additional_attributes>10.0;10.0;80.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>540</x>
-      <y>441</y>
-      <w>72</w>
-      <h>27</h>
+      <x>520</x>
+      <y>512</y>
+      <w>56</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>50.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>680</x>
+      <y>512</y>
+      <w>64</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
     <additional_attributes>60.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>720</x>
-      <y>441</y>
-      <w>81</w>
-      <h>27</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>70.0;10.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>783</x>
-      <y>774</y>
-      <w>189</w>
-      <h>117</h>
+      <x>728</x>
+      <y>680</y>
+      <w>312</w>
+      <h>104</h>
     </coordinates>
-    <panel_attributes>UpgradesManager
+    <panel_attributes>bg=Blue
+UpgradesManager
 --
 +vector&lt;Upgrade&gt; upgrades
 --
-+bool upgrade(type) //adds 1 level</panel_attributes>
+-findUpgrade(Types, UpgradeTypes): Upgrade*
++guiUpgradeInitialize(Types, UpgradeTypes, double, double)
++upgrade(Types, UpgradeTypes, double): bool
++getLevel(Types, UpgradeTypes): double
++getMultiplier(Types, UpgradeTypes): double
++getPrice(Types, UpgradeTypes): double</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>783</x>
-      <y>936</y>
-      <w>198</w>
-      <h>117</h>
+      <x>728</x>
+      <y>824</y>
+      <w>176</w>
+      <h>104</h>
     </coordinates>
-    <panel_attributes>Upgrade
+    <panel_attributes>bg=Blue
+Upgrade
 --
--type [BetterGenHeat, 
-		BetterCoolant, etc]
--int level
--double multiplier
+-type: Types
+-upgradeType: UpgradeTypes
+-level: int 
+-multiplier: double 
+-price: double
 --
-+double returnMultiplier()
-+string returnType()</panel_attributes>
++getUpgradePrice(): double
++getMultiplier(): double
++getLevel(): int
++getUpgradeType: UpgradeTypes
++getType: Types
++upgrade</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>873</x>
-      <y>567</y>
-      <w>27</w>
-      <h>225</h>
+      <x>808</x>
+      <y>648</y>
+      <w>24</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;230.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>873</x>
-      <y>882</y>
-      <w>27</w>
-      <h>72</h>
+      <x>808</x>
+      <y>776</y>
+      <w>24</w>
+      <h>64</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
   </element>
   <element>
-    <id>UMLNote</id>
-    <coordinates>
-      <x>981</x>
-      <y>936</y>
-      <w>135</w>
-      <h>63</h>
-    </coordinates>
-    <panel_attributes>for all upgrades
-check if type==desired
-if yes apply multiplier
-if no skip</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>963</x>
-      <y>756</y>
-      <w>90</w>
-      <h>45</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>80.0;10.0;80.0;30.0;10.0;30.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1107</x>
-      <y>198</y>
-      <w>27</w>
-      <h>189</h>
-    </coordinates>
-    <panel_attributes>lt=-&gt;</panel_attributes>
-    <additional_attributes>10.0;190.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>828</x>
-      <y>36</y>
-      <w>261</w>
-      <h>225</h>
-    </coordinates>
-    <panel_attributes>lt=-&gt;</panel_attributes>
-    <additional_attributes>10.0;230.0;10.0;10.0;270.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1188</x>
-      <y>36</y>
-      <w>135</w>
-      <h>855</h>
-    </coordinates>
-    <panel_attributes>lt=-&gt;</panel_attributes>
-    <additional_attributes>40.0;930.0;130.0;930.0;130.0;10.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1008</x>
-      <y>819</y>
-      <w>216</w>
-      <h>72</h>
-    </coordinates>
-    <panel_attributes>UpgradeInterface
---
---
-+void buyUpgrade(type) //onClick
-+void showUpgradeDescription(type) //onHover
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>963</x>
-      <y>855</y>
-      <w>63</w>
-      <h>27</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;50.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>1053</x>
-      <y>369</y>
-      <w>135</w>
-      <h>108</h>
-    </coordinates>
-    <panel_attributes>ReactorInterface
---
---
-+void sellAllPower()
-+string displayHeat()
-+string displayPower()
-+string displayMoney()
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>963</x>
-      <y>414</y>
-      <w>108</w>
-      <h>27</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;100.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>783</x>
-      <y>243</y>
-      <w>189</w>
-      <h>135</h>
-    </coordinates>
-    <panel_attributes>TileInterface
---
---
-+void onClick(coord)
-+void onHover(coord)
-+void drawTile()
-+void drawPart()
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>711</x>
-      <y>36</y>
-      <w>90</w>
-      <h>72</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Struct&gt;&gt;
-Coord
---
-int x
-int y</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>864</x>
-      <y>369</y>
-      <w>27</w>
-      <h>45</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;30.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>1071</x>
-      <y>36</y>
-      <w>126</w>
-      <h>171</h>
+      <x>984</x>
+      <y>120</y>
+      <w>224</w>
+      <h>224</h>
     </coordinates>
     <panel_attributes>Game
 --
--int windowSizeX
--int windowSizeY
--TileInterface TI
--ReactorInterface RI
--UpgradeInterface UI
+-window: sf::RenderWindow
+-vMode: sf::VideoMode
+-level: vector&lt;int&gt;
+-parts: vector&lt;int&gt;
+-selectedPart: string
+-jsonManager: JsonManager
 --
-+void run()
-+void refresh()
-</panel_attributes>
++run(): int
++TSP(int, int): int
++guiInitialize(tgui::Gui&amp;, bool&amp;, Reactor&amp;)
++loadPartsJson(string)
++levelGenerator(string): vector&lt;int&gt;
++textBoxText(): string
++onUpgradeHoverTextBoxText(Types, UpgradeTypes, Reactor&amp;): string
++labelMaxPowerText(Reactor): string
++getTypeJson(string): json</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>432</x>
-      <y>738</y>
-      <w>180</w>
-      <h>54</h>
+      <x>312</x>
+      <y>776</y>
+      <w>160</w>
+      <h>48</h>
     </coordinates>
-    <panel_attributes>PowerGenerator
+    <panel_attributes>bg=Orange
+PowerGenerator
 --
 -double basePowerGeneration
 -double powerGeneration</panel_attributes>
@@ -507,10 +398,10 @@ int y</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>477</x>
-      <y>612</y>
-      <w>27</w>
-      <h>144</h>
+      <x>392</x>
+      <y>664</y>
+      <w>24</w>
+      <h>128</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;140.0</additional_attributes>
@@ -518,17 +409,237 @@ int y</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>99</x>
-      <y>207</y>
-      <w>135</w>
-      <h>81</h>
+      <x>120</x>
+      <y>304</y>
+      <w>120</w>
+      <h>72</h>
     </coordinates>
-    <panel_attributes>Battery
+    <panel_attributes>bg=Orange
+Battery
 --
--double capacity
--double heat
--double maxHeat
--double baseMaxHeat</panel_attributes>
+-capacity: double
+--
+getCapcity: double</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>800</x>
+      <y>200</y>
+      <w>200</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>230.0;10.0;10.0;10.0;10.0;230.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>232</x>
+      <y>344</y>
+      <w>176</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>200.0;50.0;200.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>352</x>
+      <y>152</y>
+      <w>168</w>
+      <h>152</h>
+    </coordinates>
+    <panel_attributes>bg=Red
+&lt;&lt;Strategy&gt;&gt;
+PartHeat
+--
+--
+/+getHeat(): double/
+/+getBaseMaxHeat(): double/
+/+setBaseMaxHeat(double)/
+/+heatUp(double)/
+/+coolDonw(double)/
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>352</x>
+      <y>72</y>
+      <w>80</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>bg=Red
+HeatEnabled</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>440</x>
+      <y>72</y>
+      <w>80</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>bg=Red
+HeatDisabled</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>472</x>
+      <y>88</y>
+      <w>24</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>384</x>
+      <y>88</y>
+      <w>24</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>440</x>
+      <y>296</y>
+      <w>24</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>544</x>
+      <y>176</y>
+      <w>88</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes>bg=Green
+&lt;&lt;Enumeration&gt;&gt;
+Types
+--
+	Battery
+	Seller
+	HeatSource
+	Reflector
+	Coolant
+	Generator
+	PowerSource
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>640</x>
+      <y>176</y>
+      <w>80</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes>bg=Green
+&lt;&lt;Enumeration&gt;&gt;
+UpgradeTypes
+--
+	MainMultiplier
+	Price
+	MaxHeat
+	MaxDurability</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>544</x>
+      <y>312</y>
+      <w>80</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes>bg=Green
+&lt;&lt;Enumeration&gt;&gt;
+TileType
+--
+	buildable
+	unbuildable</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>984</x>
+      <y>24</y>
+      <w>168</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>bg=Gray
+JsonManager
+--
+-loadedJson: json
+--
++laodJson(string): json</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1056</x>
+      <y>72</y>
+      <w>24</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1296</x>
+      <y>120</y>
+      <w>240</w>
+      <h>192</h>
+    </coordinates>
+    <panel_attributes>TileMap
+--
+-tileSizeX: unsigned int
+-tileSizeY: unsigned int
+-tileMapWidth: unsigned int
+-tileMapHeight: unsigned int
+-location: sf::Vector2i
+-m_vertices: sf::VertexArray
+-m_tileset: sf::Texture
+--
+/-draw(sf::RenderTarger&amp;, sf::RenderStates)/
++getBounds: sf::FloatRect
++load(string&amp;, sf::Vector2u, vector&lt;int&gt;, 
+	           unsigned int, unsigned int, unsigned int)
++change(sf::Vector2i, sf::Vector2i)
++clickedCoordinates(sf::Vector2i): sf;:Vector2i</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1200</x>
+      <y>192</y>
+      <w>112</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;120.0;10.0</additional_attributes>
   </element>
 </diagram>

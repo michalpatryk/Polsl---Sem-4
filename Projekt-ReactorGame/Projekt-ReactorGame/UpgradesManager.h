@@ -4,7 +4,7 @@
 class UpgradesManager
 {
 	std::vector<Upgrade> upgrades;
-	//untested
+
 	Upgrade* findUpgrade(Types type, UpgradeTypes upgradeType) {
 		for(auto&it : upgrades) {
 			if(it.getUpgradeType() == upgradeType && it.getType() == type) {
@@ -29,6 +29,7 @@ public:
 		}
 		return 0;
 	}
+	//Wrong type return - check for bugs
 	double getLevel(Types type, UpgradeTypes upgradeType) {
 		auto upgradee = findUpgrade(type, upgradeType);
 		if (upgradee) {

@@ -5,11 +5,11 @@ class PowerSource :
 	public Part
 {
 	float heat = 0;
-	float baseMaxHeat;
+	//float baseMaxHeat;
 	float basePowerGeneration;
 public:
 	PowerSource(nlohmann::json j):Part(j) {
-		baseMaxHeat = j["baseMaxHeat"];
+	//	baseMaxHeat = j["baseMaxHeat"];
 		basePowerGeneration = j["basePowerGeneration"];
 	}
 	float getBasePowerGeneration() const { return basePowerGeneration; }

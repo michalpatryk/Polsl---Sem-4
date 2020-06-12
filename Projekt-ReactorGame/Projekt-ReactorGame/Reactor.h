@@ -53,7 +53,8 @@ public:
 
 	///Zwraca obiekt zegara w celu jego uruchomienia w innym wątku
 	Clock& getClock() { return std::ref(clock); }
-	//UpgradesManager& getUpgradesManager() { return std::ref(upgradesManager); }
+
+	///TODO function - due to bad refactor function doesnt return anything.
 	void onUpgradeClick(Types type, UpgradeTypes upgradeType) {
 		if (upgradesManager.upgrade(type, upgradeType, money)) {
 
