@@ -2,6 +2,7 @@
 #include <mutex>  
 #include <iostream>
 //std::mutex mtx;
+///Klasa odpowiadająca za zarządzanie, czy powinna wykonać się tura (tick) gry. Jest przystosowana do pracy w wątkach
 class Clock {
 	///Licznik nieobsłużonych ticków zegara
 	int tick = 0;

@@ -6,6 +6,7 @@
 #include <nlohmann/json.hpp>
 #include "TileMap.h"
 #include "UpgradesManager.h"
+///Klasa odpowiadająca za reaktor i wszystko z nim związane - zarządzanie częściami, obliczenia ilości pieniędzy oraz energi.
 class Reactor
 {
 	//game data

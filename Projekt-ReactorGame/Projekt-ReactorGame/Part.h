@@ -12,7 +12,7 @@ enum class Types {
 	PowerSource
 };
 
-
+///Klasa przedstawiająca część w grze. Przykładowe części to turbnia, bateria itp
 class Part
 {
 protected:

@@ -13,7 +13,8 @@
 #include "HeatSource.h"
 
 enum class TileType{buildable, unbuildable};
-
+///Klasa reprezentująca pojedyncze pole na planszy. Może posiadać część lub nie,
+///oraz może być zdatna lub niezdatna do budowy
 class Tile
 {
 	sf::Vector2i location;

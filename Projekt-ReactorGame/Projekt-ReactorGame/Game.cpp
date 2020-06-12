@@ -3,7 +3,7 @@
 
 int Game::run()
 {
-	window.create(vMode, "test");
+	window.create(vMode, "Reactor Game");
 	window.setFramerateLimit(60);
 	tgui::Gui gui(window);
 	bool txtBoxChanged = true;

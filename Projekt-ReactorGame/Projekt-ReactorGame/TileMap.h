@@ -2,7 +2,7 @@
 #pragma warning (disable: 4244)
 #include <iostream>
 #include <SFML/Graphics.hpp>
-
+///Klasa odpowiadająca za graficzną reprezentację mapy 2d złożonej z pomniejszych części o określonej teksturze
 class TileMap : public sf::Drawable, public sf::Transformable
 {
 

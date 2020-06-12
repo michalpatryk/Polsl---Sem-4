@@ -7,7 +7,7 @@ enum class UpgradeTypes {
 	MaxHeat,
 	MaxDurability
 };
-
+///Klasa odpowiedzialna za tworzenie ulepszenia i jego ulepszania
 class Upgrade
 {
 	Types type;

@@ -1,6 +1,7 @@
-#pragma once
+﻿#pragma once
 #include "Upgrade.h"
 #include <iostream>
+///Klasa odpowiedzialna za podawanie wartości mnożnika danego ulepszenia.
 class UpgradesManager
 {
 	std::vector<Upgrade> upgrades;
